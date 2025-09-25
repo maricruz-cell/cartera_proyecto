@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Aspirante</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<!-- Encabezado -->
+<header class="main-header">
+    <div class="logo">EMPLEO</div>
+    <div class="menu-toggle">☰</div>
+    <div class="user-info">
+        <img src="/img/user.png" alt="Usuario" class="user-avatar">
+        <span>Aspirante</span>
+    </div>
+</header>
+
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul>
+            <li><img src="/img/icon-datos.png" alt=""> Datos Personales</li>
+            <li><img src="/img/icon-escolaridad.png" alt=""> Escolaridad</li>
+            <li><img src="/img/icon-laboral.png" alt=""> Experiencia Laboral</li>
+            <li><img src="/img/icon-capacitacion.png" alt=""> Capacitación</li>
+            <li><img src="/img/icon-conocimientos.png" alt=""> Conocimientos Específicos</li>
+            <li><img src="/img/icon-competencias.png" alt=""> Competencias y Habilidades</li>
+            <li><img src="/img/icon-password.png" alt=""> Cambiar Contraseña</li>
+            <li><img src="/img/icon-eliminar.png" alt=""> Eliminar Usuario</li>
+        </ul>
+        <button class="logout-btn">CERRAR SESIÓN</button>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="content">
+        <h2>Bienvenido al sistema de empleo</h2>
+        <p>Selecciona una opción del menú para continuar.</p>
+    </main>
+</div>
+</body>
+</html>

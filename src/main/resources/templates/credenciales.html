@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Credenciales Generadas</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Tu cuenta ha sido creada</h2>
+
+    <p><strong>Usuario (CURP):</strong> <span th:text="${usuario}"></span></p>
+    <p><strong>Contraseña:</strong> <span th:text="${password}"></span></p>
+
+    <form th:action="@{/login}" method="get">
+        <button type="submit">Aceptar</button>
+    </form>
+
+</div>
+</body>
+</html>

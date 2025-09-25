@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+<div class="register-container">
+    <h2>¡¡DATOS PERSONALES!!</h2>
+
+    <form th:action="@{/register}" method="post" class="register-form">
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nombre (s):</label>
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Apellido Paterno:</label>
+                <input type="text" name="apellidoP" placeholder="Apellido" required>
+            </div>
+            <div class="form-group">
+                <label>Apellido Materno:</label>
+                <input type="text" name="apellidoM" placeholder="Apellido">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Género:</label>
+                <select name="genero" required>
+                    <option value="">Seleccionar</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Fecha de Nacimiento:</label>
+                <input type="date" name="fechaNacimiento" required>
+            </div>
+            <div class="form-group">
+                <label>Edad:</label>
+                <input type="number" name="edad" min="15" max="100" placeholder="Edad" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>CURP:</label>
+                <input type="text" name="curp" placeholder="Escribe tu CURP" required>
+            </div>
+            <div class="form-group">
+                <label>RFC:</label>
+                <input type="text" name="rfc" placeholder="Escribe tu RFC">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Estado Civil:</label>
+                <select name="estadoCivil">
+                    <option value="">Seleccionar</option>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="divorciado">Divorciado</option>
+                    <option value="viudo">Viudo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nacionalidad:</label>
+                <select name="nacionalidad" required>
+                    <option value="">Seleccionar</option>
+                    <option value="mexicana">Mexicana</option>
+                    <option value="extranjera">Extranjera</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Continuar →</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
