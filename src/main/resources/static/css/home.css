@@ -1,28 +1,16 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
+    background: #f5f5f5;
 }
 
-/* HEADER */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: #7B1E3D;
+    background: #7B1E3D;
     color: white;
+    padding: 10px 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: bold;
+    align-items: center;
 }
 
 .user-info {
@@ -32,58 +20,95 @@ body {
 }
 
 .user-icon {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 }
 
-/* SIDEBAR */
+.container {
+    display: flex;
+}
+
 .sidebar {
-    margin-top: 50px;
+    background: #EAEAEA;
     width: 220px;
-    background-color: #f2f2f2;
-    padding: 20px 0;
-    flex-shrink: 0;
+    padding: 20px 10px;
+    min-height: calc(100vh - 60px);
 }
 
 .sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .sidebar li {
     display: flex;
     align-items: center;
-    padding: 12px 20px;
-    color: #7B1E3D;
+    margin: 15px 0;
     font-weight: bold;
+    color: #7B1E3D;
     cursor: pointer;
 }
 
-.sidebar li img {
-    width: 24px;
-    height: 24px;
+.sidebar img {
+    width: 25px;
     margin-right: 10px;
 }
 
 .logout {
-    margin: 20px;
-    width: calc(100% - 40px);
-    background-color: #7B1E3D;
+    background: #7B1E3D;
     color: white;
     border: none;
-    border-radius: 8px;
+    width: 100%;
     padding: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
 }
 
-.logout:hover {
-    background-color: #5a162c;
-}
-
-/* CONTENT */
 .content {
-    flex-grow: 1;
-    padding: 70px 30px;
+    flex: 1;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    color: #7B1E3D;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 13px;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background: #7B1E3D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
 }

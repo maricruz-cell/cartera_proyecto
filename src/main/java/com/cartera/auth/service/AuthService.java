@@ -4,8 +4,8 @@ import com.cartera.auth.model.Usuario;
 import com.cartera.auth.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.cartera.auth.model.Direccion;
 
-import java.security.SecureRandom;
 
 @Service
 public class AuthService {
@@ -18,31 +18,32 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Generar contraseña aleatoria segura
-    private String generarPasswordAleatoria() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 8; i++) { // longitud de 8 caracteres
-            sb.append(chars.charAt(random.nextInt(chars.length())));
-        }
-        return sb.toString();
-    }
-
     // Registrar usuario con CURP como login
     public Usuario register(Usuario datos) {
-        // Generar contraseña aleatoria
-        String passGenerada = generarPasswordAleatoria();
+        // Generar una contraseña temporal
+        String passDefault = generarPasswordTemporal();
 
-        // Guardar encriptada en BD
-        datos.setPassword(passwordEncoder.encode(passGenerada));
-        datos.setPasswordCaducada(true); // obliga a cambiarla al primer login
+        // Guardar la contraseña encriptada en la BD
+        datos.setPassword(passwordEncoder.encode(passDefault));
+        datos.setPasswordCaducada(true);
 
-        // Guardar la versión en claro solo para mostrarla en pantalla (NO se guarda en BD)
-        datos.setTempPassword(passGenerada);
+        // Guardar la contraseña temporal (NO se persiste en BD)
+        datos.setTempPassword(passDefault);
 
         return usuarioRepository.save(datos);
     }
+
+    // Generar contraseña temporal aleatoria
+    private String generarPasswordTemporal() {
+        return "EMP" + (int)(Math.random() * 100000); // Ejemplo: EMP12345
+    }
+
+    // Buscar usuario por CURP
+    public Usuario findByUsername(String curp) {
+        return usuarioRepository.findByCurp(curp).orElse(null);
+    }
+
+    // Actualizar contraseña y marcar como válida
     public void actualizarPassword(String curp, String nuevaPassword) {
         Usuario usuario = usuarioRepository.findByCurp(curp)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -51,5 +52,18 @@ public class AuthService {
         usuario.setPasswordCaducada(false); // ya no necesita cambio
         usuarioRepository.save(usuario);
     }
+
+    // Guardar o actualizar dirección
+    public void actualizarDireccion(String curp, Direccion direccion) {
+        Usuario usuario = usuarioRepository.findByCurp(curp)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        usuario.setDireccion(direccion);
+        usuarioRepository.save(usuario); // en memoria se reemplaza
+    }
+    public void actualizarUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+
+
 
 }

@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -33,7 +32,16 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .successHandler(successHandler()) // 👈 manejamos redirección aquí
+                        .successHandler((request, response, authentication) -> {
+                            String curp = authentication.getName();
+                            Usuario usuario = usuarioRepository.findByCurp(curp).orElse(null);
+
+                            if (usuario != null && usuario.isPasswordCaducada()) {
+                                response.sendRedirect("/cambiar-password");
+                            } else {
+                                response.sendRedirect("/home");
+                            }
+                        })
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -42,19 +50,5 @@ public class SecurityConfig {
                 );
 
         return http.build();
-    }
-
-    @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        return (request, response, authentication) -> {
-            String username = authentication.getName();
-            Usuario usuario = usuarioRepository.findByCurp(username).orElse(null);
-
-            if (usuario != null && usuario.isPasswordCaducada()) {
-                response.sendRedirect("/cambiar-password"); // 👈 primer login
-            } else {
-                response.sendRedirect("/home"); // 👈 login normal
-            }
-        };
     }
 }

@@ -22,26 +22,22 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String curp) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByCurp(curp)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + curp));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findByCurp(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
 
-        // Determinar rol
-        String rol = "USER"; // valor por defecto
-        if (usuario.getCveUsergroup() != null) {
-            if (usuario.getCveUsergroup() == 1) {
-                rol = "ADMIN";
-            } else if (usuario.getCveUsergroup() == 2) {
-                rol = "ASPIRANTE";
-            }
+        // Rol por defecto mientras no haya BD
+        String rol = "ROLE_ASPIRANTE";
+        if (usuario.getCveUsergroup() != null && usuario.getCveUsergroup() == 1) {
+            rol = "ROLE_ADMIN";
         }
 
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + rol);
+        GrantedAuthority authority = new SimpleGrantedAuthority(rol);
 
-        return User.builder()
-                .username(usuario.getCurp())          //  usamos la CURP como username
-                .password(usuario.getPassword())      // contraseña encriptada
-                .authorities(Collections.singletonList(authority))
-                .build();
+        return new User(
+                usuario.getCurp(),
+                usuario.getPassword(),
+                Collections.singletonList(authority)
+        );
     }
 }

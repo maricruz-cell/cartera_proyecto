@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    text-align: center;
+}
+
+.credenciales-container {
+    width: 420px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+h2 {
+    color: #7B1E3D;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+/* Campos */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.password-container {
+    display: flex;
+    gap: 8px;
+}
+
+.password-container input {
+    flex: 1;
+}
+
+.btn-copy {
+    background: #b48954;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-copy:hover {
+    background: #8a693d;
+}
+
+/* Botón Aceptar */
+.btn {
+    background: #7B1E3D;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 15px;
+}
+.btn:hover {
+    background: #5a142c;
+}

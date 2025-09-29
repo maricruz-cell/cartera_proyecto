@@ -33,7 +33,7 @@ public class AuthController {
     public String register(@ModelAttribute Usuario datos, Model model) {
         Usuario nuevo = authService.register(datos);
 
-        // Mostrar CURP y contraseña temporal sin hash
+        // Mostrar CURP y contraseña temporal (NO el hash)
         model.addAttribute("usuario", nuevo.getCurp());
         model.addAttribute("password", nuevo.getTempPassword());
 

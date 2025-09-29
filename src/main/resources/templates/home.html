@@ -10,27 +10,128 @@
     <div class="logo">EMPLEO</div>
     <div class="user-info">
         <img th:src="@{/img/user-icon.png}" alt="Usuario" class="user-icon">
-        <span th:text="${usuario.nombreRol}">Aspirante</span>
+        <span th:text="${usuario.nombre}">Aspirante</span>
     </div>
 </header>
 
-<div class="sidebar">
-    <ul>
-        <li><img th:src="@{/img/icon-datos.png}"> Datos Personales</li>
-        <li><img th:src="@{/img/icon-escolaridad.png}"> Escolaridad</li>
-        <li><img th:src="@{/img/icon-experiencia.png}"> Experiencia Laboral</li>
-        <li><img th:src="@{/img/icon-capacitacion.png}"> Capacitación</li>
-        <li><img th:src="@{/img/icon-conocimientos.png}"> Conocimientos Específicos</li>
-        <li><img th:src="@{/img/icon-competencias.png}"> Competencias y Habilidades</li>
-        <li><img th:src="@{/img/icon-password.png}"> Cambiar Contraseña</li>
-        <li><img th:src="@{/img/icon-eliminar.png}"> Eliminar Usuario</li>
-    </ul>
-    <button class="logout">CERRAR SESIÓN</button>
-</div>
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul>
+            <li><img th:src="@{/img/icon-datos.png}"> Datos Personales</li>
+            <li><img th:src="@{/img/icon-escolaridad.png}"> Escolaridad</li>
+            <li><img th:src="@{/img/icon-experiencia.png}"> Experiencia Laboral</li>
+            <li><img th:src="@{/img/icon-capacitacion.png}"> Capacitación</li>
+            <li><img th:src="@{/img/icon-conocimientos.png}"> Conocimientos</li>
+            <li><img th:src="@{/img/icon-competencias.png}"> Competencias</li>
+            <li><img th:src="@{/img/icon-password.png}"> Cambiar Contraseña</li>
+            <li><img th:src="@{/img/icon-eliminar.png}"> Eliminar Usuario</li>
+        </ul>
+        <button class="logout">CERRAR SESIÓN</button>
+    </aside>
 
-<main class="content">
-    <h2>Bienvenido</h2>
-    <p th:text="'Hola ' + ${usuario.nombre} + ', aquí está tu menú de navegación.'"></p>
-</main>
+    <!-- Contenido -->
+    <main class="content">
+        <!-- DATOS PERSONALES -->
+        <section class="card">
+            <h2>DATOS PERSONALES</h2>
+            <form th:object="${usuario}" method="post" th:action="@{/update-datos}">
+                <div class="grid">
+                    <div>
+                        <label>Nombre(s):</label>
+                        <input type="text" th:field="*{nombre}">
+                    </div>
+                    <div>
+                        <label>Apellido Paterno:</label>
+                        <input type="text" th:field="*{apellidoP}">
+                    </div>
+                    <div>
+                        <label>Apellido Materno:</label>
+                        <input type="text" th:field="*{apellidoM}">
+                    </div>
+                    <div>
+                        <label>CURP:</label>
+                        <input type="text" th:field="*{curp}" readonly>
+                    </div>
+                    <div>
+                        <label>RFC:</label>
+                        <input type="text" th:field="*{email}">
+                    </div>
+                    <div>
+                        <label>Nacionalidad:</label>
+                        <input type="text" value="Mexicana" readonly>
+                    </div>
+                    <div>
+                        <label>Fecha de Nacimiento:</label>
+                        <input type="date">
+                    </div>
+                    <div>
+                        <label>Edad:</label>
+                        <input type="number" min="18" max="99">
+                    </div>
+                    <div>
+                        <label>Género:</label>
+                        <select>
+                            <option>Seleccionar</option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Estado Civil:</label>
+                        <select>
+                            <option>Seleccionar</option>
+                            <option>Soltero</option>
+                            <option>Casado</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Guardar Datos</button>
+            </form>
+        </section>
+
+        <!-- DIRECCIÓN -->
+        <section class="card">
+            <h2>DIRECCIÓN</h2>
+            <form method="post" th:action="@{/update-direccion}">
+                <div class="grid">
+                    <div>
+                        <label>Estado:</label>
+                        <input type="text" name="estado">
+                    </div>
+                    <div>
+                        <label>Municipio:</label>
+                        <input type="text" name="municipio">
+                    </div>
+                    <div>
+                        <label>Localidad:</label>
+                        <input type="text" name="localidad">
+                    </div>
+                    <div>
+                        <label>Colonia:</label>
+                        <input type="text" name="colonia">
+                    </div>
+                    <div>
+                        <label>Calle:</label>
+                        <input type="text" name="calle">
+                    </div>
+                    <div>
+                        <label>Número Exterior:</label>
+                        <input type="text" name="numExterior">
+                    </div>
+                    <div>
+                        <label>Número Interior:</label>
+                        <input type="text" name="numInterior">
+                    </div>
+                    <div>
+                        <label>Código Postal:</label>
+                        <input type="text" name="cp">
+                    </div>
+                </div>
+                <button type="submit">Guardar Dirección</button>
+            </form>
+        </section>
+    </main>
+</div>
 </body>
 </html>

@@ -5,9 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PasswordController {
@@ -20,7 +18,7 @@ public class PasswordController {
 
     // Mostrar formulario de cambio de contraseña
     @GetMapping("/cambiar-password")
-    public String formCambiarPassword() {
+    public String mostrarFormulario() {
         return "cambiar-password"; // templates/cambiar-password.html
     }
 
@@ -30,13 +28,13 @@ public class PasswordController {
                                   @RequestParam String nuevaPassword,
                                   Model model) {
         try {
-            String username = userDetails.getUsername(); // aquí es el CURP
-            authService.actualizarPassword(username, nuevaPassword);
+            String curp = userDetails.getUsername(); // el username es la CURP
+            authService.actualizarPassword(curp, nuevaPassword);
 
-            model.addAttribute("msg", "Contraseña actualizada correctamente. Inicia sesión con tu nueva contraseña.");
-            return "redirect:/login?passwordChanged"; // redirige al login
+            model.addAttribute("msg", "Contraseña actualizada correctamente");
+            return "redirect:/home"; // redirigir al home
         } catch (Exception e) {
-            model.addAttribute("error", "Hubo un error al cambiar la contraseña: " + e.getMessage());
+            model.addAttribute("error", "Hubo un error al cambiar la contraseña");
             return "cambiar-password";
         }
     }

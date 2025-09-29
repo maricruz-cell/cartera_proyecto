@@ -1,85 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <title>Registro - Datos Personales</title>
     <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
-<div class="register-container">
+<div class="form-container">
     <h2>¡¡DATOS PERSONALES!!</h2>
 
-    <form th:action="@{/register}" method="post" class="register-form">
-
+    <form th:action="@{/register}" method="post" th:object="${usuario}">
         <div class="form-row">
             <div class="form-group">
                 <label>Nombre (s):</label>
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="text" th:field="*{nombre}" placeholder="Tu nombre" required>
             </div>
             <div class="form-group">
                 <label>Apellido Paterno:</label>
-                <input type="text" name="apellidoP" placeholder="Apellido" required>
+                <input type="text" th:field="*{apellidoP}" placeholder="Apellido" required>
             </div>
             <div class="form-group">
                 <label>Apellido Materno:</label>
-                <input type="text" name="apellidoM" placeholder="Apellido">
+                <input type="text" th:field="*{apellidoM}" placeholder="Apellido">
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group">
                 <label>Género:</label>
-                <select name="genero" required>
-                    <option value="">Seleccionar</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
+                <select>
+                    <option>Seleccionar</option>
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                    <option>Otro</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Fecha de Nacimiento:</label>
-                <input type="date" name="fechaNacimiento" required>
+                <input type="date">
             </div>
             <div class="form-group">
                 <label>Edad:</label>
-                <input type="number" name="edad" min="15" max="100" placeholder="Edad" required>
+                <input type="number" min="1" max="120">
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group">
                 <label>CURP:</label>
-                <input type="text" name="curp" placeholder="Escribe tu CURP" required>
+                <input type="text" th:field="*{curp}" placeholder="Escribe tu CURP" required>
             </div>
             <div class="form-group">
                 <label>RFC:</label>
-                <input type="text" name="rfc" placeholder="Escribe tu RFC">
+                <input type="text" placeholder="Escribe tu RFC">
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group">
                 <label>Estado Civil:</label>
-                <select name="estadoCivil">
-                    <option value="">Seleccionar</option>
-                    <option value="soltero">Soltero</option>
-                    <option value="casado">Casado</option>
-                    <option value="divorciado">Divorciado</option>
-                    <option value="viudo">Viudo</option>
+                <select>
+                    <option>Seleccionar</option>
+                    <option>Soltero</option>
+                    <option>Casado</option>
+                    <option>Divorciado</option>
+                    <option>Viudo</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Nacionalidad:</label>
-                <select name="nacionalidad" required>
-                    <option value="">Seleccionar</option>
-                    <option value="mexicana">Mexicana</option>
-                    <option value="extranjera">Extranjera</option>
+                <select>
+                    <option>Seleccionar</option>
+                    <option>Mexicana</option>
+                    <option>Extranjera</option>
                 </select>
             </div>
         </div>
 
-        <div class="form-actions">
-            <button type="submit">Continuar →</button>
-        </div>
+        <button type="submit" class="btn">Continuar →</button>
     </form>
 </div>
 </body>

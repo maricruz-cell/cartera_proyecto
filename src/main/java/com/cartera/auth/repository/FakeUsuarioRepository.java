@@ -6,22 +6,19 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class UsuarioRepository {
+public class FakeUsuarioRepository {
 
     private final Map<String, Usuario> usuarios = new HashMap<>();
 
-    // Guardar usuario
+    public Optional<Usuario> findByCurp(String curp) {
+        return Optional.ofNullable(usuarios.get(curp));
+    }
+
     public Usuario save(Usuario usuario) {
         usuarios.put(usuario.getCurp(), usuario);
         return usuario;
     }
 
-    // Buscar por CURP (que es tu username)
-    public Optional<Usuario> findByCurp(String curp) {
-        return Optional.ofNullable(usuarios.get(curp));
-    }
-
-    // Obtener todos
     public List<Usuario> findAll() {
         return new ArrayList<>(usuarios.values());
     }
