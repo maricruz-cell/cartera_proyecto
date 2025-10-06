@@ -1,28 +1,9 @@
 package com.cartera.auth.repository;
 
 import com.cartera.auth.model.Usuario;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-import java.util.*;
-
-@Repository
-public class UsuarioRepository {
-
-    private final Map<String, Usuario> usuarios = new HashMap<>();
-
-    // Guardar usuario
-    public Usuario save(Usuario usuario) {
-        usuarios.put(usuario.getCurp(), usuario);
-        return usuario;
-    }
-
-    // Buscar por CURP (que es tu username)
-    public Optional<Usuario> findByCurp(String curp) {
-        return Optional.ofNullable(usuarios.get(curp));
-    }
-
-    // Obtener todos
-    public List<Usuario> findAll() {
-        return new ArrayList<>(usuarios.values());
-    }
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    Optional<Usuario> findByUsername(String username);
 }

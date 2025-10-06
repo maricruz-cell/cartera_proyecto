@@ -1,68 +1,77 @@
 package com.cartera.auth.model;
 
 import jakarta.persistence.*;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
-@Table(name = "usuarios") // solo por consistencia, pero no se usa BD aún
+@Table(name = "sb_usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_usuario")
+    private Long idUsuario;
 
-    @Column(unique = true, nullable = false, length = 50)
-    private String curp;  // será el "username"
+    @ManyToOne
+    @JoinColumn(name = "id_persona")
+    private Persona persona;
 
-    @Column(nullable = false, length = 100)
-    private String password;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    private String nombre;
-    private String apellidoP;
-    private String apellidoM;
-    private String email;
-    private Integer cveUsergroup; // rol
+    @Column(nullable = false)
+    private String passwordHash;
 
-    private boolean passwordCaducada = true;
+    @Column(nullable = false)
+    private Boolean activo = true;
 
-    @Transient
-    private String tempPassword;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "sb_usuario_rol",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
-    // --- Getters y Setters ---
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // ====== Getters y Setters ======
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
 
-    public String getCurp() { return curp; }
-    public void setCurp(String curp) { this.curp = curp; }
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getApellidoP() { return apellidoP; }
-    public void setApellidoP(String apellidoP) { this.apellidoP = apellidoP; }
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 
-    public String getApellidoM() { return apellidoM; }
-    public void setApellidoM(String apellidoM) { this.apellidoM = apellidoM; }
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public Boolean getActivo() {
+        return activo;
+    }
 
-    public Integer getCveUsergroup() { return cveUsergroup; }
-    public void setCveUsergroup(Integer cveUsergroup) { this.cveUsergroup = cveUsergroup; }
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
 
-    public boolean isPasswordCaducada() { return passwordCaducada; }
-    public void setPasswordCaducada(boolean passwordCaducada) { this.passwordCaducada = passwordCaducada; }
+    public Set<Rol> getRoles() {
+        return roles;
+    }
 
-    public String getTempPassword() { return tempPassword; }
-    public void setTempPassword(String tempPassword) { this.tempPassword = tempPassword; }
-
-    @Transient
-    private Direccion direccion;
-
-    public Direccion getDireccion() { return direccion; }
-    public void setDireccion(Direccion direccion) { this.direccion = direccion; }
-
-
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
 }

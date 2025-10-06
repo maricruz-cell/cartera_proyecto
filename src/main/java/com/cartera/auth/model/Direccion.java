@@ -1,37 +1,35 @@
 package com.cartera.auth.model;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "direccion")
+@Getter
+@Setter
 public class Direccion {
-    private String estado;
-    private String municipio;
-    private String localidad;
-    private String colonia;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_direccion")
+    private Long idDireccion;
+
+    @Column(name = "calle")
     private String calle;
-    private String numExterior;
-    private String numInterior;
-    private String cp;
 
-    // --- Getters y Setters ---
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    @Column(name = "numero")
+    private String numero;
 
-    public String getMunicipio() { return municipio; }
-    public void setMunicipio(String municipio) { this.municipio = municipio; }
+    @Column(name = "colonia")
+    private String colonia;
 
-    public String getLocalidad() { return localidad; }
-    public void setLocalidad(String localidad) { this.localidad = localidad; }
+    @Column(name = "municipio")
+    private String municipio;
 
-    public String getColonia() { return colonia; }
-    public void setColonia(String colonia) { this.colonia = colonia; }
+    @Column(name = "estado")
+    private String estado;
 
-    public String getCalle() { return calle; }
-    public void setCalle(String calle) { this.calle = calle; }
-
-    public String getNumExterior() { return numExterior; }
-    public void setNumExterior(String numExterior) { this.numExterior = numExterior; }
-
-    public String getNumInterior() { return numInterior; }
-    public void setNumInterior(String numInterior) { this.numInterior = numInterior; }
-
-    public String getCp() { return cp; }
-    public void setCp(String cp) { this.cp = cp; }
+    @Column(name = "codigo_postal")
+    private String codigoPostal;
 }
