@@ -1,6 +1,8 @@
 package com.cartera.auth.model;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "sb_persona")
@@ -11,11 +13,22 @@ public class Persona {
     @Column(name = "id_persona")
     private Long idPersona;
 
-    private String nomUsuario;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
+    @Column(name = "curp", nullable = false, unique = true)
     private String curp;
-    private String rfc;
+
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
+    @Column(name = "activo")
+    private Boolean activo = true;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "sb_usuario_rol",
+            joinColumns = @JoinColumn(name = "id_persona"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
     // ===== Getters y Setters =====
     public Long getIdPersona() {
@@ -26,30 +39,6 @@ public class Persona {
         this.idPersona = idPersona;
     }
 
-    public String getNomUsuario() {
-        return nomUsuario;
-    }
-
-    public void setNomUsuario(String nomUsuario) {
-        this.nomUsuario = nomUsuario;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
     public String getCurp() {
         return curp;
     }
@@ -58,11 +47,27 @@ public class Persona {
         this.curp = curp;
     }
 
-    public String getRfc() {
-        return rfc;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
     }
 }

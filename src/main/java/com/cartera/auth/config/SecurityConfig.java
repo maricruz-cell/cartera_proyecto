@@ -12,8 +12,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // ⚠️ Usa contraseñas tal cual están en la BD (sin cifrar)
-        return NoOpPasswordEncoder.getInstance();
+        return NoOpPasswordEncoder.getInstance(); // contraseñas sin encriptar
     }
 
     @Bean
@@ -21,11 +20,15 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/css/**", "/img/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMINISTRADOR")
+                        .requestMatchers("/aspirante/**").hasRole("ASPIRANTE")
+                        .requestMatchers("/reclutamiento/**").hasRole("RECLUTAMIENTO")
+                        .requestMatchers("/unidad/**").hasRole("UNIDAD")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/redirectByRole", true)
                         .permitAll()
                 )
                 .logout(logout -> logout

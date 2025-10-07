@@ -14,7 +14,7 @@ public class Rol {
     @Column(name = "des_rol", nullable = false)
     private String desRol;
 
-
+    // ===== Getters y Setters =====
     public Long getIdRol() {
         return idRol;
     }
