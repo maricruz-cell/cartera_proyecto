@@ -12,9 +12,9 @@ public class Rol {
     private Long idRol;
 
     @Column(name = "des_rol", nullable = false)
-    private String nombre;
+    private String desRol;
 
-    // ===== Getters y Setters =====
+
     public Long getIdRol() {
         return idRol;
     }
@@ -23,11 +23,11 @@ public class Rol {
         this.idRol = idRol;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDesRol() {
+        return desRol;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDesRol(String desRol) {
+        this.desRol = desRol;
     }
 }

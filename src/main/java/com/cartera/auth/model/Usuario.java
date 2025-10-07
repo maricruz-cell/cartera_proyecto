@@ -34,7 +34,7 @@ public class Usuario {
     )
     private Set<Rol> roles = new HashSet<>();
 
-    // ====== Getters y Setters ======
+
     public Long getIdUsuario() {
         return idUsuario;
     }
