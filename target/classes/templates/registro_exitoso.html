@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro exitoso</title>
+</head>
+<body>
+<h1>¡Registro completado con éxito!</h1>
+<p>Tu folio asignado es: <strong th:text="${folioGenerado}"></strong></p>
+<a th:href="@{/login}">Volver al inicio de sesión</a>
+</body>
+</html>

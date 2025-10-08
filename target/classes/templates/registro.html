@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - Cartera de Empleo</title>
+    <link rel="stylesheet" href="/css/registro.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <h1>¡DATOS PERSONALES!</h1>
+    </div>
+</header>
+
+<section class="form-section">
+    <p>Por favor, ingresa la información correctamente.<br>
+        Todos los campos son obligatorios para crear tu cuenta.</p>
+
+    <form th:action="@{/registro}" method="post">
+
+        <div class="form-grid">
+            <div>
+                <label>Nombre(s):</label>
+                <input type="text" name="nomUsuario" required>
+            </div>
+
+            <div>
+                <label>Apellido Paterno:</label>
+                <input type="text" name="apellidoPaterno" required>
+            </div>
+
+            <div>
+                <label>Apellido Materno:</label>
+                <input type="text" name="apellidoMaterno" required>
+            </div>
+
+            <div>
+                <label>Género:</label>
+                <select name="sexo" required>
+                    <option value="">Seleccionar</option>
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Fecha de Nacimiento:</label>
+                <input type="date" name="fechaNacimiento" required>
+            </div>
+
+            <div>
+                <label>Edad:</label>
+                <input type="number" name="edad" required>
+            </div>
+
+            <div>
+                <label>CURP:</label>
+                <input type="text" name="curp" required>
+            </div>
+
+            <div>
+                <label>RFC:</label>
+                <input type="text" name="rfc" required>
+            </div>
+
+            <div>
+                <label>Estado Civil:</label>
+                <input type="text" name="estadoCivil" required>
+            </div>
+
+            <div>
+                <label>Nacionalidad:</label>
+                <input type="text" name="nacionalidad" required>
+            </div>
+
+            <div>
+                <label>Correo Electrónico:</label>
+                <input type="email" name="correo" required>
+            </div>
+
+            <div>
+                <label>Confirmar Correo Electrónico:</label>
+                <input type="email" name="confirmCorreo" required>
+            </div>
+
+            <div>
+                <label>Genera tu contraseña:</label>
+                <input type="password" name="passwordHash" required>
+            </div>
+
+            <div>
+                <label>Confirmar contraseña:</label>
+                <input type="password" name="confirmPassword" required>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit">Continuar →</button>
+        </div>
+    </form>
+</section>
+
+<footer>
+    <img src="/img/franja-dorada.png" alt="Decoración">
+</footer>
+
+</body>
+</html>

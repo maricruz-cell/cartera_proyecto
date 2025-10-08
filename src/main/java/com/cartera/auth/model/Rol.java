@@ -11,10 +11,10 @@ public class Rol {
     @Column(name = "id_rol")
     private Long idRol;
 
-    @Column(name = "des_rol", nullable = false)
+    @Column(name = "des_rol")
     private String desRol;
 
-    // ===== Getters y Setters =====
+    // Getters y Setters
     public Long getIdRol() {
         return idRol;
     }

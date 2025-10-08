@@ -31,7 +31,7 @@ public class AuthController {
     @GetMapping("/register")
     public String mostrarRegistro(Model model) {
         model.addAttribute("usuario", new Usuario());
-        return "register"; // templates/register.html
+        return "register"; // templates/registro.html
     }
 
     // Procesar registro

@@ -13,15 +13,19 @@ public class Persona {
     @Column(name = "id_persona")
     private Long idPersona;
 
-    @Column(name = "curp", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
+    private String folio;
+
+    @Column(nullable = false, unique = true)
     private String curp;
 
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    @Column(name = "activo")
+    @Column(nullable = false)
     private Boolean activo = true;
 
+    // Relación con roles
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "sb_usuario_rol",
@@ -37,6 +41,14 @@ public class Persona {
 
     public void setIdPersona(Long idPersona) {
         this.idPersona = idPersona;
+    }
+
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
     }
 
     public String getCurp() {

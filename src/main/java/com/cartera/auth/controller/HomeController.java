@@ -28,21 +28,21 @@ public class HomeController {
 
     @GetMapping("/admin/menu")
     public String adminMenu() {
-        return "menu-admin"; // archivo: templates/menu-admin.html
+        return "menu-admin"; // menu-admin.html
     }
 
     @GetMapping("/aspirante/menu")
     public String aspiranteMenu() {
-        return "menu-aspirante"; // archivo: templates/menu-aspirante.html
+        return "menu-aspirante"; // menu-aspirante.html
     }
 
     @GetMapping("/reclutamiento/menu")
     public String reclutamientoMenu() {
-        return "menu-reclutamiento"; // archivo: templates/menu-reclutamiento.html
+        return "menu-reclutamiento"; // menu-reclutamiento.html
     }
 
     @GetMapping("/unidad/menu")
     public String unidadMenu() {
-        return "menu-unidad"; // archivo: templates/menu-unidad.html
+        return "menu-unidad"; // archivo: menu-unidad.html
     }
 }
