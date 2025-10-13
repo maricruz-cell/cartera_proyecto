@@ -19,22 +19,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String curp) throws UsernameNotFoundException {
-
-        //  CURP
         Persona persona = personaRepository.findByCurp(curp)
                 .orElseThrow(() -> new UsernameNotFoundException("CURP no encontrada"));
-
 
         if (Boolean.FALSE.equals(persona.getActivo())) {
             throw new UsernameNotFoundException("Usuario inactivo");
         }
 
-
         var authorities = persona.getRoles().stream()
                 .map(rol -> "ROLE_" + rol.getDesRol().toUpperCase())
                 .map(org.springframework.security.core.authority.SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
-
 
         return User.builder()
                 .username(persona.getCurp())
