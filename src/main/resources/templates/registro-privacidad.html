@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Aviso de Privacidad | Cartera de Empleo</title>
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="titulo">¡¡AVISO DE PRIVACIDAD!!</h2>
+
+    <p>
+        Para aspirantes de empleo del Poder Ejecutivo del Estado de México, le informamos que la Dirección de Capital Humano y Escalafón...
+        <br><br>
+        Finalidades del tratamiento de sus Datos Personales: a) Para reclutamiento y selección de personal, b) Evaluar si usted está calificado, c) Grabar entrevistas, d) Llevar a cabo estudios y análisis, etc.
+    </p>
+
+    <form th:action="@{/registro/privacidad}" method="post" class="form-aviso">
+        <div class="opciones">
+            <label><input type="radio" name="acepto" value="si" required> HE LEÍDO Y ACEPTO</label>
+            <label><input type="radio" name="acepto" value="no" required> HE LEÍDO Y NO ACEPTO</label>
+        </div>
+
+        <button type="submit" class="btn-continuar">Continuar →</button>
+    </form>
+</div>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+    .container {
+        width: 70%;
+        margin: 40px auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        padding: 30px;
+    }
+    .titulo {
+        color: #7B1E3D;
+        margin-bottom: 25px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .opciones {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        color: #5d152e;
+    }
+    .btn-continuar {
+        background: #7B1E3D;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 30px;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 30px;
+    }
+    .btn-continuar:hover {
+        background: #5d152e;
+    }
+</style>
+
+</body>
+</html>

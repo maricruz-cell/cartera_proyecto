@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Aspirante | Cartera de Empleo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #EFEFEF;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ======== SIDEBAR ======== */
+        .sidebar {
+            background-color: #7B1E3D;
+            color: white;
+            width: 270px;
+            transition: width 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .sidebar.collapsed {
+            width: 90px;
+        }
+
+        .sidebar-header {
+            background-color: #7B1E3D;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2em;
+            border-bottom: 1px solid #B48954;
+        }
+
+        .sidebar-header i {
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .menu {
+            background-color: #F3F3F3;
+            flex-grow: 1;
+            padding-top: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            color: #7B1E3D;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 6px 12px;
+            transition: all 0.2s;
+            font-size: 0.95em;
+        }
+
+        .menu-item:hover {
+            background-color: #7B1E3D;
+            color: white;
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            margin-right: 15px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .collapsed .menu-item span {
+            display: none;
+        }
+
+        .collapsed .menu-item {
+            justify-content: center;
+        }
+
+        .sidebar-footer {
+            padding: 15px;
+            border-top: 1px solid #B48954;
+            text-align: center;
+        }
+
+        .logout-btn {
+            background-color: #7B1E3D;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background-color: #5a142c;
+        }
+
+        /* ======== MAIN CONTENT ======== */
+        .main {
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #F7F6F6;
+            padding: 20px 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #7B1E3D;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .header .perfil {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .perfil img {
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
+        }
+
+        /* ======== FORMULARIOS ======== */
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #000;
+            font-weight: 700;
+            border-bottom: 3px solid #B48954;
+            display: inline-block;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px 25px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            background-color: #B48954;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======== SIDEBAR ======== -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span>EMPLEO</span>
+        <i id="toggleBtn" class="fa-solid fa-bars"></i>
+    </div>
+    <div class="menu">
+        <a href="#" class="menu-item"><i class="fa-solid fa-user"></i><span>Datos Personales</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-graduation-cap"></i><span>Escolaridad</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-briefcase"></i><span>Experiencia Laboral</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i><span>Capacitación</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-list-check"></i><span>Conocimientos Específicos</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-network-wired"></i><span>Competencias y Habilidades</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-key"></i><span>Cambiar Contraseña</span></a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-user-xmark"></i><span>Eliminar Usuario</span></a>
+    </div>
+    <div class="sidebar-footer">
+        <form th:action="@{/logout}" method="post" style="margin: 0;">
+            <button type="submit" class="logout-btn">CERRAR SESIÓN</button>
+        </form>
+    </div>
+
+</div>
+
+<!-- ======== MAIN CONTENT ======== -->
+<div class="main">
+    <div class="header">
+        <h2>Datos Personales</h2>
+        <div class="perfil">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Aspirante">
+            <span>Aspirante</span>
+        </div>
+    </div>
+
+    <form>
+        <h3 class="section-title">DATOS PERSONALES</h3>
+        <div class="form-grid">
+            <div><label>Nombre(s):</label><input type="text" placeholder="Escriba su nombre"></div>
+            <div><label>Apellido Paterno:</label><input type="text" placeholder="Apellido paterno"></div>
+            <div><label>Apellido Materno:</label><input type="text" placeholder="Apellido materno"></div>
+            <div><label>CURP:</label><input type="text" placeholder="Escriba su CURP"></div>
+            <div><label>RFC:</label><input type="text" placeholder="Escriba su RFC"></div>
+            <div><label>Nacionalidad:</label><input type="text" value="MEXICANA"></div>
+            <div><label>Fecha de nacimiento:</label><input type="date"></div>
+            <div><label>Edad:</label><input type="number" min="18" max="99"></div>
+            <div><label>Género:</label>
+                <select><option>Seleccionar</option><option>Masculino</option><option>Femenino</option></select>
+            </div>
+            <div><label>Estado civil:</label>
+                <select><option>Seleccionar</option><option>Soltero(a)</option><option>Casado(a)</option></select>
+            </div>
+        </div>
+    </form>
+
+    <form>
+        <h3 class="section-title">DIRECCIÓN</h3>
+        <div class="form-grid">
+            <div><label>Estado:</label><input type="text" placeholder="Estado"></div>
+            <div><label>Municipio:</label><input type="text" placeholder="Municipio"></div>
+            <div><label>Localidad:</label><input type="text" placeholder="Localidad"></div>
+            <div><label>Colonia:</label><input type="text" placeholder="Colonia"></div>
+            <div><label>Calle:</label><input type="text" placeholder="Calle"></div>
+            <div><label>Código Postal:</label><input type="text" placeholder="Código Postal"></div>
+            <div><label>Número Exterior:</label><input type="text" placeholder="S/N"></div>
+            <div><label>Número Interior:</label><input type="text" placeholder="S/N"></div>
+        </div>
+    </form>
+
+    <footer>SUBDIRECCIÓN DE RECLUTAMIENTO Y SELECCIÓN DE PERSONAL</footer>
+</div>
+
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.getElementById("toggleBtn");
+    toggleBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+    });
+</script>
+
+</body>
+</html>

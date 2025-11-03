@@ -1,119 +1,303 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* Contenedor principal */
+/* === ANIMACIÓN === */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === CONTENEDOR PRINCIPAL === */
 .container {
-    display: flex;
     width: 900px;
-    height: 520px;
-    border-radius: 20px;
+    height: 540px;
+    display: flex;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0px 4px 20px rgba(0,0,0,0.2);
-    background: white;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-/* Panel izquierdo */
+/* === PANEL IZQUIERDO === */
 .left-panel {
-    flex: 1;
-    background: url("/img/fondo-guinda.png") no-repeat center center;
+    width: 45%;
+    background-image: url('/img/fondo-guinda.png');
+    background-repeat: repeat;
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
-.left-text h2 {
-    font-size: 48px;
-    margin: 0;
+.branding {
+    text-align: center;
+    line-height: 1.5;
 }
-.left-text p {
+.branding h2 {
     font-size: 28px;
-    font-weight: bold;
-    margin: 5px 0;
+    font-weight: 700;
 }
-.left-text span {
-    font-size: 18px;
+.branding h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+.branding p {
+    font-size: 16px;
 }
 
-/* Panel derecho */
+/* === PANEL DERECHO === */
 .right-panel {
-    flex: 1;
-    padding: 40px;
+    width: 55%;
+    padding: 40px 60px;
+    position: relative;
+}
+
+.logo-edomex {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    width: 160px;
+}
+
+.titulo {
+    text-align: center;
+    color: #1E1E1E;
+    margin-top: 70px;
+    font-weight: 700;
+}
+
+.login-form {
     display: flex;
     flex-direction: column;
+    margin-top: 25px;
+}
+
+label {
+    margin-top: 12px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.input-container {
+    display: flex;
     align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-top: 5px;
+    position: relative;
+}
+.input-container i {
+    color: #888;
+    margin-right: 8px;
+}
+.input-container input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 0.95em;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #888;
+}
+.toggle-password:hover {
+    color: #7B1E3D;
+}
+
+.forgot-password {
+    text-align: right;
+    margin: 10px 0;
+}
+.forgot-password a {
+    text-decoration: none;
+    color: #7B1E3D;
+    font-size: 0.85em;
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.franja {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.btn-ingresar {
+    background-color: #7B1E3D;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-ingresar:hover {
+    background-color: #5A142C;
+}
+
+.crear-cuenta {
+    text-align: center;
+    margin-top: 10px;
+}
+.crear-cuenta a {
+    color: #7B1E3D;
+    text-decoration: none;
+    font-weight: 500;
+}
+.crear-cuenta a:hover {
+    text-decoration: underline;
+}
+
+/* === MENSAJES === */
+.error-msg, .logout-msg {
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 10px;
+    font-weight: 500;
+}
+.error-msg {
+    color: #C40000;
+}
+.logout-msg {
+    color: #1B5E20;
+}
+
+
+/* ===== MODAL OLVIDÓ CONTRASEÑA ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
     justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
 }
 
-.right-panel .logo img {
-    width: 180px;
-    margin-bottom: 20px;
+.modal-box {
+    background: #fff;
+    width: 480px;
+    max-width: 90%;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeIn 0.25s ease-in-out;
 }
 
-.right-panel h2 {
-    margin-bottom: 20px;
+.modal-header {
+    background: #7B1E3D;
+    color: #fff;
+    padding: 18px 25px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: #E6B800;
+}
+
+.modal-body {
+    padding: 30px 40px 40px;
+}
+
+.modal-body p {
+    color: #222;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.forgot-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
     color: #333;
 }
 
-/* Campos de entrada */
-.input-group {
+.forgot-form input[type="text"] {
     width: 100%;
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
     font-size: 14px;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-/* Enlace de olvidó contraseña */
-.forgot {
-    display: block;
+    outline: none;
     margin-bottom: 20px;
-    font-size: 13px;
-    color: #7B1E3D;
-    text-decoration: none;
 }
 
-/* Botón */
-.btn {
-    background: #7B1E3D;
-    color: white;
-    border: none;
-    padding: 12px;
+.recaptcha {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 10px;
+    background: #f9f9f9;
+    margin-bottom: 25px;
+}
+
+.recaptcha img {
+    width: 85px;
+    opacity: 0.9;
+}
+
+.btn-enviar {
+    display: block;
     width: 100%;
-    border-radius: 8px;
+    background: #7B1E3D;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 15px;
-}
-.btn:hover {
-    background: #5a142c;
+    transition: 0.2s ease;
 }
 
-/* Link de registro */
-.register-link {
-    font-size: 13px;
-    color: #7B1E3D;
-    text-decoration: none;
+.btn-enviar:hover {
+    background: #5d152e;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }

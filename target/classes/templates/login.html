@@ -1,47 +1,125 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Iniciar Sesión | Cartera de Empleo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-<div class="container">
-    <!-- Panel izquierdo -->
+<div class="container fade-in">
+    <!-- PANEL IZQUIERDO -->
     <div class="left-panel">
-        <div class="left-text">
+        <div class="branding">
             <h2>EMPLEO</h2>
-            <p>GOB.EDOMEX</p>
-            <span>PODER EJECUTIVO</span>
+            <h3>GOB.EDOMEX</h3>
+            <p>PODER EJECUTIVO</p>
         </div>
     </div>
 
-    <!-- Panel derecho -->
+    <!-- PANEL DERECHO -->
     <div class="right-panel">
-        <div class="logo">
-            <img th:src="@{/img/logoeedomex.png}" alt="Logo">
-        </div>
-        <h2>Iniciar Sesión</h2>
+        <img src="/img/logoedomex.png" alt="Edomex" class="logo-edomex">
+        <h2 class="titulo">Iniciar Sesión</h2>
 
-        <form th:action="@{/login}" method="post">
-            <div class="input-group">
-                <label for="username">Usuario</label>
-                <input type="text" id="username" name="username" placeholder="CURP" required>
+        <form th:action="@{/login}" method="post" class="login-form">
+            <label for="username">Usuario</label>
+            <div class="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="username" name="username" placeholder="Usuario" required>
             </div>
 
-            <div class="input-group">
-                <label for="password">Contraseña</label>
+            <label for="password">Contraseña</label>
+            <div class="input-container">
+                <i class="fa-solid fa-lock"></i>
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
             </div>
 
-            <a href="#" class="forgot">¿Olvidó su contraseña?</a>
+            <!-- Enlace que abre el modal -->
+            <div class="forgot-password">
+                <a href="#" id="openForgotModal">¿Olvidó su contraseña?</a>
+            </div>
 
-            <button type="submit" class="btn">Ingresar al Sistema</button>
+            <img src="/img/franja-dorada.png" alt="Decorativo" class="franja">
+            <button type="submit" class="btn-ingresar">Ingresar al Sistema</button>
+
+
+            <div th:if="${param.error}" class="error-msg">CURP o contraseña incorrecta</div>
+            <div th:if="${param.logout}" class="logout-msg">Sesión cerrada correctamente</div>
+
+            <!-- Mensajes del olvido de contraseña -->
+            <div th:if="${successMsg}" class="success-msg" th:text="${successMsg}"></div>
+            <div th:if="${errorMsg}" class="error-msg" th:text="${errorMsg}"></div>
         </form>
-
-        <a href="/registro" class="text-center d-block mt-3">Crear Cuenta</a>
-
+        <p class="crear-cuenta">
+            <a th:href="@{/registro/aviso}">Crear Cuenta</a>
+        </p>
     </div>
 </div>
+
+<!-- ========================= -->
+<!-- MODAL OLVIDÓ SU CONTRASEÑA -->
+<!-- ========================= -->
+<div id="forgotModal" class="modal" style="display: none;">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>¿Olvidaste tu contraseña?</h2>
+            <span class="close-btn" id="closeModal">&times;</span>
+        </div>
+
+        <div class="modal-body">
+            <p>
+                Su contraseña fue enviada a la dirección de correo electrónico
+                que proporcionó durante el registro.
+            </p>
+
+            <form th:action="@{/password/forgot}" method="post" class="forgot-form">
+                <label for="curp">Ingrese su CURP:</label>
+                <input type="text" id="curp" name="curp" placeholder="CURP" required>
+
+                <div class="recaptcha">
+                    <input type="checkbox" id="robot" required>
+                    <label for="robot">No soy un robot</label>
+                    <img src="/img/recaptcha.png" alt="reCAPTCHA">
+                </div>
+
+                <button type="submit" class="btn-enviar">ENVIAR</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ========================= -->
+<!-- SCRIPT FINAL UNIFICADO -->
+<!-- ========================= -->
+<script>
+    // 👁️ Mostrar/Ocultar contraseña
+    const togglePassword = document.getElementById("togglePassword");
+    const password = document.getElementById("password");
+    togglePassword.addEventListener("click", () => {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        togglePassword.classList.toggle("fa-eye-slash");
+    });
+
+    // 💡 Control de modal "¿Olvidó su contraseña?"
+    const modal = document.getElementById("forgotModal");
+    const openModal = document.getElementById("openForgotModal");
+    const closeModal = document.getElementById("closeModal");
+
+    openModal.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "flex"; // Solo se muestra al hacer clic
+    });
+
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    });
+</script>
 </body>
 </html>
