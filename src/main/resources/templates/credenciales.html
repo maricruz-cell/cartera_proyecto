@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Credenciales Generadas</title>
+    <link rel="stylesheet" th:href="@{/css/credenciales.css}">
+</head>
+<body>
+<div class="credenciales-container">
+    <h2>¡TU CUENTA HA SIDO CREADA!</h2>
+
+    <div class="form-group">
+        <label>Usuario:</label>
+        <input type="text" th:value="${usuario}" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Contraseña:</label>
+        <div class="password-container">
+            <input type="text" id="passwordField" th:value="${password}" readonly>
+            <button type="button" class="btn-copy" onclick="copiarPassword()">📋 Copiar</button>
+        </div>
+    </div>
+
+    <form th:action="@{/login}" method="get">
+        <button type="submit" class="btn">ACEPTAR</button>
+    </form>
+</div>
+
+<script>
+    function copiarPassword() {
+        const passField = document.getElementById("passwordField");
+        passField.select();
+        passField.setSelectionRange(0, 99999); // para móviles
+        document.execCommand("copy");
+        alert("✅ Contraseña copiada al portapapeles");
+    }
+</script>
+</body>
+</html>
