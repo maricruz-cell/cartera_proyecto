@@ -28,27 +28,25 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String curp) throws UsernameNotFoundException {
 
-        //  Buscar persona por CURP
         Persona persona = personaRepository.findByCurp(curp)
                 .orElseThrow(() -> new UsernameNotFoundException("CURP no encontrada: " + curp));
 
-        //  Obtener roles asociados a la persona
-        List<UsuarioRol> usuarioRoles = usuarioRolRepository.findByPersona_IdPersona(persona.getIdPersona());
+        List<UsuarioRol> roles = usuarioRolRepository.findByPersona_IdPersona(persona.getIdPersona());
 
-        //  Convertir roles en autoridades de Spring Security
-        List<GrantedAuthority> authorities = usuarioRoles.stream()
-                .map(ur -> new SimpleGrantedAuthority("ROLE_" + ur.getRol().getDesRol().toUpperCase()))
+        if (roles.isEmpty()) {
+            throw new UsernameNotFoundException("El usuario no tiene roles asignados");
+        }
+
+        List<GrantedAuthority> authorities = roles.stream()
+                .map(ur -> new SimpleGrantedAuthority(ur.getRol().getDesRol())) // SIN "ROLE_"
                 .collect(Collectors.toList());
 
-        //  Crear el usuario de Spring
         return new User(
-                persona.getCurp(),                // username
-                persona.getContrasenaBase64(),    // password
-                persona.getActivo(),              // habilitado
-                true,                             // cuenta no expirada
-                true,                             // credenciales no expiradas
-                true,                             // cuenta no bloqueada
-                authorities                       // roles
+                persona.getCurp(),
+                persona.getContrasenaBase64(),
+                persona.getActivo(),
+                true, true, true,
+                authorities
         );
     }
 }

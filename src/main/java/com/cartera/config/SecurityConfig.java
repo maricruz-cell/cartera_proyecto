@@ -37,56 +37,30 @@ public class SecurityConfig {
     @Bean
     public AuthenticationSuccessHandler successHandler() {
         return (request, response, authentication) -> {
-            var authorities = authentication.getAuthorities();
-            String rol = authorities.iterator().next().getAuthority();
+            String rol = authentication.getAuthorities().iterator().next().getAuthority();
+            System.out.println("✅ Rol autenticado: " + rol); // Para verificar
 
             switch (rol) {
-                case "ROLE_ADMINISTRADOR":
-                    response.sendRedirect("/admin/menu");
-                    break;
-                case "ROLE_RECLUTAMIENTO":
-                    response.sendRedirect("/reclutamiento/menu");
-                    break;
-                case "ROLE_UNIDAD":
-                    response.sendRedirect("/unidad/menu");
-                    break;
-                case "ROLE_ASPIRANTE":
-                    response.sendRedirect("/aspirante/menu");
-                    break;
-                default:
-                    response.sendRedirect("/login?error=true");
-                    break;
+                case "Administrador" -> response.sendRedirect("/admin/menu");
+                case "Reclutamiento" -> response.sendRedirect("/reclutamiento/menu");
+                case "Unidad" -> response.sendRedirect("/unidad/menu");
+                case "Aspirante" -> response.sendRedirect("/aspirante/menu");
+                default -> response.sendRedirect("/login?error=true");
             }
         };
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // 🔓 RUTAS PÚBLICAS (sin login)
-                        .requestMatchers(
-                                "/login",
-                                "/registro",
-                                "/registro/**",       // ✅ Permite /registro/aviso y /registro/privacidad
-                                "/validar/**",
-                                "/password/forgot",
-                                "/css/**",
-                                "/img/**",
-                                "/js/**"
-                        ).permitAll()
-
-                        // 🔒 RUTAS SEGÚN ROL
-                        .requestMatchers("/admin/**").hasRole("ADMINISTRADOR")
-                        .requestMatchers("/reclutamiento/**").hasRole("RECLUTAMIENTO")
-                        .requestMatchers("/unidad/**").hasRole("UNIDAD")
-                        .requestMatchers("/aspirante/**").hasRole("ASPIRANTE")
-
-                        // 🔒 Todo lo demás requiere autenticación
+                        .requestMatchers("/login", "/registro/**", "/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("Administrador")
+                        .requestMatchers("/reclutamiento/**").hasAuthority("Reclutamiento")
+                        .requestMatchers("/unidad/**").hasAuthority("Unidad")
+                        .requestMatchers("/aspirante/**").hasAuthority("Aspirante")
                         .anyRequest().authenticated()
                 )
-
                 .formLogin(form -> form
                         .loginPage("/login")
                         .usernameParameter("username")
@@ -95,13 +69,11 @@ public class SecurityConfig {
                         .failureUrl("/login?error=true")
                         .permitAll()
                 )
-
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true")
                         .permitAll()
                 );
-
         return http.build();
     }
 }
