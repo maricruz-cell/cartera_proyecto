@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiencia Laboral</title>
+
+    <!-- CSS GENERAL DEL ASPIRANTE (SIDEBAR + HEADER) -->
+    <link rel="stylesheet" th:href="@{/css/aspirante-menu.css}">
+
+    <!-- CSS EXCLUSIVO DE ESTA VISTA -->
+    <link rel="stylesheet" th:href="@{/css/experiencia.css}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ▬▬▬▬▬▬▬ TOPBAR ▬▬▬▬▬▬▬ -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span class="brand">EMPLEO</span>
+
+            <button id="toggleSidebar" class="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <div class="topbar-right">
+            <img class="avatar" th:src="@{${fotoAspirante}}">
+            <span class="user-name" th:text="${nombreAspirante}">Aspirante</span>
+        </div>
+    </header>
+
+    <div class="body">
+
+        <!-- ▬▬▬▬▬▬▬ SIDEBAR ▬▬▬▬▬▬▬ -->
+        <aside id="sidebar" class="sidebar">
+            <ul>
+
+                <li><a th:href="@{/aspirante/datos-personales}">
+                    <img src="/img/icon-datos.png">
+                    <span>Datos Personales</span>
+                </a></li>
+
+                <li><a th:href="@{/aspirante/escolaridad}">
+                    <img src="/img/icon-escolaridad.png">
+                    <span>Escolaridad</span>
+                </a></li>
+
+                <li class="active"><a th:href="@{/aspirante/experiencia-laboral}">
+                    <img src="/img/icon-experiencia.png">
+                    <span>Experiencia Laboral</span>
+                </a></li>
+
+                <li><a th:href="@{/aspirante/capacitacion}">
+                    <img src="/img/icon-capacitacion1.png">
+                    <span>Capacitación</span>
+                </a></li>
+
+                <li><a th:href="@{/aspirante/conocimientos}">
+                    <img src="/img/icon-conocimiento.png">
+                    <span>Conocimientos</span>
+                </a></li>
+
+                <li><a th:href="@{/aspirante/competencias}">
+                    <img src="/img/icon-competencias.png">
+                    <span>Competencias</span>
+                </a></li>
+
+                <li><a th:href="@{/aspirante/cambiar-contrasena}">
+                    <img src="/img/icon-password.png">
+                    <span>Cambiar Contraseña</span>
+                </a></li>
+
+                <li><a th:href="@{/aspirante/eliminar}">
+                    <img src="/img/icon-eliminar.png">
+                    <span>Eliminar Usuario</span>
+                </a></li>
+
+            </ul>
+
+            <div class="logout-section">
+                <a th:href="@{/logout}" class="logout-btn">CERRAR SESIÓN</a>
+            </div>
+        </aside>
+
+        <!-- ▬▬▬▬▬▬▬ CONTENIDO ▬▬▬▬▬▬▬ -->
+        <main id="content" class="content">
+
+            <h2 class="titulo-seccion">EXPERIENCIA LABORAL</h2>
+            <p class="descripcion">Gestiona tu información laboral.</p>
+
+            <button class="btn-add" onclick="mostrarFormulario()">+ Agregar nuevo</button>
+
+            <!-- FORMULARIO -->
+            <div id="form-laboral" class="form-container hidden">
+
+                <section class="card">
+                    <h2 class="titulo-seccion">DATOS LABORALES</h2>
+
+                    <div class="row">
+                        <div class="col">
+                            <label>Empleo a describir como:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Sector general:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Sector público:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Área laboral:</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label>Área laboral específica:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Nombre de empresa o dependencia:</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label>Fecha de Inicio:</label>
+                            <input type="date">
+                        </div>
+
+                        <div class="col">
+                            <label>Fecha de Término:</label>
+                            <input type="date">
+                        </div>
+
+                        <div class="col">
+                            <label>Años de experiencia:</label>
+                            <input type="number">
+                        </div>
+
+                        <div class="col">
+                            <label>Meses de experiencia:</label>
+                            <input type="number">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <h2 class="titulo-seccion">DESCRIPCIÓN DEL EMPLEO</h2>
+
+                    <div class="row">
+                        <div class="col">
+                            <label>Nivel:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Descripción del empleo:</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label>Funciones desempeñadas:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Otra función desempeñada:</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label>Sueldo mensual recibido:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Tipo de contratación:</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="col">
+                            <label>Motivo de separación:</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                </section>
+
+                <div class="acciones">
+                    <button class="btn-cancelar" onclick="cancelar()">CANCELAR</button>
+                    <button class="btn-guardar" onclick="abrirModal()">GUARDAR</button>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+<!-- JS DEL SIDEBAR -->
+<script th:src="@{/js/aspirante-menu.js}"></script>
+
+<script>
+    function mostrarFormulario() {
+        document.getElementById("form-laboral").classList.remove("hidden");
+    }
+
+    function cancelar() {
+        document.getElementById("form-laboral").classList.add("hidden");
+    }
+</script>
+
+</body>
+</html>

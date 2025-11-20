@@ -18,66 +18,73 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <!-- 💡 AQUÍ agrupa todas las dependencias dentro de esta etiqueta -->
     <dependencies>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-java8time</artifactId>
+            <version>3.0.4.RELEASE</version> </dependency>
 
-        <!-- SPRING WEB -->
+        <!-- 🌐 SPRING WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- SPRING SECURITY (incluye PasswordEncoder y BCrypt) -->
+        <!-- 🔒 SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- SPRING DATA JPA -->
+        <!-- 💾 SPRING DATA JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- THYMELEAF (para vistas HTML) -->
+        <!-- 🎨 THYMELEAF -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- DRIVER DE POSTGRESQL -->
+        <!-- 🐘 DRIVER DE POSTGRESQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.4</version>
         </dependency>
 
-        <!-- LOMBOK (para simplificar código) -->
+        <!-- 🦸‍♂️ LOMBOK -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- TESTING (opcional) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- ✅ Dependencia correcta para envío de correos -->
+        <!-- 📧 ENVÍO DE CORREOS (Spring + Jakarta Mail) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
-        <!-- ✅ API completa de Jakarta Mail (para MimeMessage) -->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
             <version>2.0.1</version>
         </dependency>
 
+        <!-- 🧪 TESTS (opcional) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
 
 
     </dependencies>

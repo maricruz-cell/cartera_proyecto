@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar Contraseña</title>
+    <link rel="stylesheet" th:href="@{/css/aspirante.css}">
+    <link rel="stylesheet" th:href="@{/css/aspirante-modal.css}">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div th:replace="~{aspirante/fragments/sidebar :: sidebar}"></div>
+
+<!-- HEADER -->
+<div th:replace="~{aspirante/fragments/header :: header}"></div>
+
+<main class="content">
+
+    <h2 class="section-title">CAMBIAR CONTRASEÑA</h2>
+
+    <p class="section-sub">
+        Cambia tu contraseña en un entorno seguro. No la compartas y asegúrate de crear una combinación fuerte.
+    </p>
+
+    <div class="card-large">
+
+        <div class="grid-1">
+            <label>Usuario:</label>
+            <input type="text" th:value="${nombreAspirante}" disabled>
+        </div>
+
+        <div class="grid-1">
+            <label>Nombre del usuario:</label>
+            <input type="text" th:value="${nombreAspirante}" disabled>
+        </div>
+
+        <div class="grid-1">
+            <label>Contraseña nueva:</label>
+            <input type="password" id="passNueva" placeholder="Escriba su nueva contraseña">
+        </div>
+
+        <button class="btn-secondary">Validar Contraseña</button>
+
+        <p class="nota">
+            Evita usar datos personales o combinaciones predecibles.
+        </p>
+
+        <button class="btn-secondary">Actualizar Contraseña</button>
+
+        <div class="buttons">
+            <button class="btn-cancel" onclick="history.back()">Cancelar</button>
+            <button class="btn-save" onclick="abrirModal()">Guardar</button>
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+    function abrirModal() {
+        document.getElementById("modalConfirm").classList.remove("hidden");
+    }
+
+    function cerrarModal() {
+        document.getElementById("modalConfirm").classList.add("hidden");
+    }
+</script>
+
+</body>
+</html>

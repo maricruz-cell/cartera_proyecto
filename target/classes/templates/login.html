@@ -2,54 +2,73 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="icon" href="/img/logo_mexico.png">
-    <link rel="stylesheet" href="/css/login.css">
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
+
 <body>
 
-<div class="container">
-    <!-- Panel izquierdo -->
-    <div class="left-panel">
-        <div class="left-content">
-            <h2>EMPLEO<br>GOB.EDOMEX<br><span>PODER EJECUTIVO</span></h2>
-        </div>
-    </div>
+<div class="page-wrapper">
 
-    <!-- Panel derecho -->
-    <div class="right-panel">
-        <div class="logo">
-            <img src="/img/logo_mexico.png" alt="Gobierno del Estado de México">
+    <div class="login-card">
+
+        <!-- PANEL IZQUIERDO -->
+        <div class="login-left">
+            <h1>EMPLEO</h1>
+            <h2>GOB. EDOMEX<br>PODER EJECUTIVO</h2>
         </div>
 
-        <h1>Iniciar Sesión</h1>
+        <!-- PANEL DERECHO -->
+        <div class="login-right">
 
-        <form th:action="@{/login}" method="post" class="login-form">
-            <label for="curp">Usuario</label>
-            <div class="input-container">
-                <input type="text" id="curp" name="curp" placeholder="Usuario" required>
-                <span class="icon">👤</span>
+            <img class="logo" src="/img/logo-edomex.png">
+
+            <h2>Iniciar Sesión</h2>
+
+            <!-- FORMULARIO -->
+            <form th:action="@{/login}" method="post" class="form-wrapper">
+
+                <!-- Usuario -->
+                <div class="input-group">
+                    <img src="/img/icon-user.svg" class="input-icon">
+                    <input type="text" name="curp" placeholder="Usuario" required>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="input-group">
+                    <img src="/img/icon-lock.svg" class="input-icon">
+                    <input type="password" id="passwordInput" name="contrasena" placeholder="Contraseña" required>
+
+                    <img src="/img/icon-eye.svg" class="toggle-password" onclick="togglePassword()">
+                </div>
+
+                <div class="forgot-password">
+                    <a th:href="@{/forgot-password}">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <img src="/img/franja-dorada.png" class="login-divider">
+
+                <button type="submit" class="btn-login">Ingresar al Sistema</button>
+
+            </form>
+
+            <div class="create-account">
+                <a th:href="@{/registro}">Crear Cuenta</a>
             </div>
 
-            <label for="contrasena">Contraseña</label>
-            <div class="input-container">
-                <input type="password" id="contrasena" name="contrasena" placeholder="•••••••" required>
-                <span class="icon">🔒</span>
-            </div>
+        </div>
 
-            <a href="#" class="forgot">¿Olvidó su contraseña?</a>
-
-            <div class="divider"></div>
-
-            <button type="submit" class="btn">Ingresar al Sistema</button>
-        </form>
-
-        <a href="#" class="create-account">Crear Cuenta</a>
-
-        <p th:text="${error}" class="error"></p>
     </div>
+
 </div>
+
+<script>
+    function togglePassword() {
+        const input = document.getElementById("passwordInput");
+        input.type = input.type === "password" ? "text" : "password";
+    }
+</script>
 
 </body>
 </html>

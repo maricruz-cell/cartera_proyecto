@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Conocimientos Específicos</title>
+
+    <!-- CSS general del aspirante -->
+    <link rel="stylesheet" th:href="@{/css/aspirante.css}">
+</head>
+
+<body>
+
+<!-- ▬▬▬ SIDEBAR ▬▬▬ -->
+<div th:replace="~{aspirante/fragments/sidebar :: sidebar}"></div>
+
+<!-- ▬▬▬ HEADER ▬▬▬ -->
+<div th:replace="~{aspirante/fragments/header :: header}"></div>
+
+<main class="content">
+
+    <h2 class="section-title">CONOCIMIENTOS ESPECÍFICOS</h2>
+    <p class="section-sub">Registra tus conocimientos técnicos o habilidades especializadas.</p>
+
+    <button class="btn-add" onclick="mostrarFormulario()">+ Agregar nuevo</button>
+
+    <!-- FORMULARIO OCULTO -->
+    <div id="form-conocimientos" class="form-box hidden">
+
+        <h2 class="form-title">CONOCIMIENTOS ESPECÍFICOS</h2>
+
+        <form>
+
+            <!-- IDIOMA -->
+            <div class="form-group">
+                <label>Domina otro idioma además del español:</label>
+                <input type="text" placeholder="No">
+            </div>
+
+            <!-- INFORMÁTICA -->
+            <div class="form-group">
+                <label>Maneja alguna paquetería de cómputo:</label>
+                <input type="text" placeholder="No">
+            </div>
+
+            <!-- JURÍDICO/LABORAL -->
+            <div class="form-group">
+                <label>Tiene algún conocimiento jurídico/laboral:</label>
+                <input type="text" placeholder="No">
+            </div>
+
+            <!-- CONOCIMIENTO ESPECÍFICO -->
+            <div class="form-group">
+                <label>¿Tiene algún conocimiento específico?</label>
+                <input type="text" placeholder="Escríbalo">
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn-cancel" onclick="cancelar()">Cancelar</button>
+                <button type="button" class="btn-save" onclick="abrirConfirmacion()">Guardar</button>
+            </div>
+
+        </form>
+    </div>
+
+</main>
+
+
+
+<script th:src="@{/js/aspirante-menu.js}"></script>
+
+<script>
+    function mostrarFormulario() {
+        document.getElementById("form-conocimientos").classList.remove("hidden");
+    }
+    function cancelar() {
+        document.getElementById("form-conocimientos").classList.add("hidden");
+    }
+    function abrirConfirmacion() {
+        document.getElementById("modalConfirm").classList.remove("hidden");
+    }
+    function cerrarModal() {
+        document.getElementById("modalConfirm").classList.add("hidden");
+    }
+</script>
+
+</body>
+</html>

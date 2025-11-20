@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Capacitación</title>
+
+    <link rel="stylesheet" th:href="@{/css/aspirante.css}">
+    <link rel="stylesheet" th:href="@{/css/capacitacion.css}">
+</head>
+
+<body>
+
+<!-- ▬▬▬▬▬▬▬ SIDEBAR ▬▬▬▬▬▬▬ -->
+<div th:replace="~{aspirante/fragments/sidebar :: sidebar}"></div>
+
+<!-- ▬▬▬▬▬▬▬ HEADER ▬▬▬▬▬▬▬ -->
+<div th:replace="~{aspirante/fragments/header :: header}"></div>
+
+
+<main class="content">
+
+    <h2 class="section-title">CAPACITACIÓN</h2>
+    <p class="section-sub">Consulta y actualiza tu información de capacitaciones recibidas.</p>
+
+    <button class="btn-add" onclick="mostrarFormulario()">+ Agregar nuevo</button>
+
+    <!-- FORMULARIO OCULTO -->
+    <div id="form-capacitacion" class="form-box hidden">
+
+        <h2 class="form-title">DATOS DE LA CAPACITACIÓN</h2>
+
+        <form>
+
+            <!-- ================= PARTE 1 ================= -->
+            <h3 class="subtitle">CAPACITACIÓN RECIBIDA EN LOS ÚLTIMOS TRES AÑOS</h3>
+
+            <div class="grid-2">
+                <div>
+                    <label>Nombre de la capacitación:</label>
+                    <input type="text" placeholder="Escriba el área específica">
+                </div>
+
+                <div>
+                    <label>Área de la capacitación:</label>
+                    <input type="text" placeholder="Escriba el área específica">
+                </div>
+            </div>
+
+            <!-- ================= PARTE 2 ================= -->
+            <h3 class="subtitle">DATOS DE LA CAPACITACIÓN</h3>
+
+            <div class="grid-2">
+                <div>
+                    <label>Tipo de capacitación:</label>
+                    <select><option>Seleccionar</option></select>
+                </div>
+
+                <div>
+                    <label>Institución:</label>
+                    <select><option>Seleccionar</option></select>
+                </div>
+            </div>
+
+            <!-- ================= PARTE 3 ================= -->
+            <h3 class="subtitle">DURACIÓN DE LA CAPACITACIÓN</h3>
+
+            <div class="grid-3">
+                <div>
+                    <label>Fecha de Inicio:</label>
+                    <input type="date">
+                </div>
+
+                <div>
+                    <label>Fecha de Término:</label>
+                    <input type="date">
+                </div>
+
+                <div>
+                    <label>Duración (HORAS):</label>
+                    <select><option>Seleccionar</option></select>
+                </div>
+            </div>
+
+            <!-- ================= PARTE 4 ================= -->
+            <h3 class="subtitle">DOCUMENTACIÓN</h3>
+
+            <div>
+                <label>Documentación:</label>
+                <select><option>Seleccionar</option></select>
+            </div>
+
+            <!-- BOTONES -->
+            <div class="buttons">
+                <button type="button" class="btn-cancel" onclick="cancelar()">Cancelar</button>
+                <button type="button" class="btn-save" onclick="abrirConfirmacion()">Guardar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+
+
+
+<script>
+
+    function mostrarFormulario() {
+        document.getElementById("form-capacitacion").classList.remove("hidden");
+    }
+
+    function cancelar() {
+        document.getElementById("form-capacitacion").classList.add("hidden");
+    }
+
+    function abrirConfirmacion() {
+        document.getElementById("modalConfirm").classList.remove("hidden");
+    }
+
+    function cerrarModal() {
+        document.getElementById("modalConfirm").classList.add("hidden");
+    }
+
+</script>
+
+</body>
+</html>

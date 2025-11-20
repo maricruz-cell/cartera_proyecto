@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+    <header class="topbar">
+        <div class="title">Aspirante</div>
+
+        <div class="user-info">
+            <img th:src="@{/img/aspirante/avatar-default.png}" class="avatar">
+            <span th:text="${nombreAspirante}">Usuario</span>
+        </div>
+    </header>
+</div>
+
+</body>
+</html>

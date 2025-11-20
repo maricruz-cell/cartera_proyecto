@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Competencias y Habilidades</title>
+
+    <link rel="stylesheet" th:href="@{/css/aspirante.css}">
+</head>
+
+<body>
+
+<!-- ▬▬▬ SIDEBAR ▬▬▬ -->
+<div th:replace="~{aspirante/fragments/sidebar :: sidebar}"></div>
+
+<!-- ▬▬▬ HEADER ▬▬▬ -->
+<div th:replace="~{aspirante/fragments/header :: header}"></div>
+
+<main class="content">
+
+    <h2 class="section-title">COMPETENCIAS Y HABILIDADES</h2>
+    <p class="section-sub">Selecciona únicamente con las que se sienta más identificado.</p>
+
+    <div class="form-box">
+
+        <h2 class="form-title">COMPETENCIAS Y HABILIDADES</h2>
+
+        <form>
+
+            <div class="grid-4">
+
+                <div>
+                    <label>Integridad</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Responsabilidad</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Adaptabilidad</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Trabajo en equipo</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Actitud de servicio</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Trabajo bajo presión</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Dinamismo-energía</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Liderazgo</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Relaciones interpersonales</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Habilidades administrativas</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Perseverancia</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Enfoque a resultados</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Enfoque a la calidad</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Comunicación</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Análisis de problemas</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Control de actividades</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Iniciativa</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Innovación</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Aprendizaje rápido</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+                <div>
+                    <label>Autoaprendizaje</label>
+                    <input type="text" placeholder="Seleccionar">
+                </div>
+
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn-cancel" onclick="cancelar()">Cancelar</button>
+                <button type="button" class="btn-save" onclick="abrirConfirmacion()">Guardar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+
+<!-- Sidebar script -->
+<script th:src="@{/js/aspirante-menu.js}"></script>
+
+<script>
+    function abrirConfirmacion() {
+        document.getElementById("modalConfirm").classList.remove("hidden");
+    }
+    function cerrarModal() {
+        document.getElementById("modalConfirm").classList.add("hidden");
+    }
+    function cancelar() {
+        window.location.href = "/aspirante/competencias";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+}
+
+/* ----- SIDEBAR ----- */
+
+.sidebar {
+    width: 250px;
+    background: #732033;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    transition: 0.3s;
+    color: white;
+}
+
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar .menu li {
+    list-style: none;
+    padding: 15px 20px;
+}
+
+.sidebar .menu li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar.collapsed span {
+    display: none;
+}
+
+/* ----- HEADER ----- */
+
+.topbar {
+    margin-left: 250px;
+    height: 60px;
+    background: #732033;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+/* Content */
+
+.content {
+    margin-left: 250px;
+    padding: 30px;
+}
+
+.section-title {
+    font-size: 26px;
+    color: #732033;
+}
+
+.btn-add {
+    background: #0066ff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Modal */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* Buttons */
+
+.btn-cancel {
+    background: #c4c4c4;
+}
+
+.btn-save {
+    background: #732033;
+    color: white;
+}
