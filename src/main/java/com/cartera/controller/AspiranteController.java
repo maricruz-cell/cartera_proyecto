@@ -3,6 +3,7 @@ package com.cartera.controller;
 import com.cartera.dto.*;
 
 import com.cartera.model.CatCompetencias;
+import com.cartera.model.CatCompetencias;
 import com.cartera.model.DtDocumentosAspirante;
 import com.cartera.model.DtPersona;
 import com.cartera.model.Persona;
