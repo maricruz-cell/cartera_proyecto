@@ -7,4 +7,5 @@ public class PerfilAspiranteDTO {
 
     private String nombreCompleto;
     private String rutaFoto;
+
 }

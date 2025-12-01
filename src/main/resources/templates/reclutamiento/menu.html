@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/reclutamiento.css">
+</head>
+
+<body>
+
+<!-- 🔥 FRAGMENTO DEL MENÚ -->
+<th:block th:fragment="menu">
+
+    <!-- ===== BARRA SUPERIOR ===== -->
+    <header class="topbar">
+        <button id="btnMenu" class="menu-toggle">&#9776;</button>
+
+        <h2 class="titulo-top">EMPLEO</h2>
+
+        <div class="logo-top">
+            <img th:src="@{/img/icon-user.png}" alt="Usuario">
+            <span th:text="${usuario}"></span>
+        </div>
+    </header>
+
+    <!-- ===== BARRA LATERAL ===== -->
+    <aside id="sidebar" class="sidebar expandida">
+
+        <ul class="nav-links">
+
+            <li>
+                <a th:href="@{/reclutamiento/vacantes-registradas}">
+                    <img src="/img/icon-datos.png" class="icon">
+                    <span>Vacantes registradas</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/vacantes-cubiertas}">
+                    <img src="/img/icon-escolaridad.png" class="icon">
+                    <span>Vacantes cubiertas</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/aspirantes-registrados}">
+                    <img src="/img/icon-experiencia.png" class="icon">
+                    <span>Aspirantes registrados</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/aspirantes-no-activos}">
+                    <img src="/img/icon-eye.png" class="icon">
+                    <span>Aspirantes no activos</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/estadisticos}">
+                    <img src="/img/icon-lock.png" class="icon">
+                    <span>Estadísticos</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/catalogos}">
+                    <img src="/img/icon-password.png" class="icon">
+                    <span>Catálogos</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/coordinadores}">
+                    <img src="/img/icon-user.png" class="icon">
+                    <span>Coordinadores</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/reportes}">
+                    <img src="/img/icon-user.png" class="icon">
+                    <span>Reportes</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/cambiar-password}">
+                    <img src="/img/icon-lock.png" class="icon">
+                    <span>Cambiar contraseña</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/reclutamiento/recordatorio}">
+                    <img src="/img/icon-user.png" class="icon">
+                    <span>Recordatorio</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn-logout">Cerrar sesión</button>
+        </form>
+
+    </aside>
+
+    <!-- SCRIPT DEL MENÚ PARA AJUSTAR EL CONTENIDO -->
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const contenido = document.querySelector(".contenido");
+
+        document.getElementById("btnMenu").addEventListener("click", () => {
+            sidebar.classList.toggle("colapsada");
+            sidebar.classList.toggle("expandida");
+
+            if (sidebar.classList.contains("colapsada")) {
+                contenido.style.marginLeft = "80px";
+            } else {
+                contenido.style.marginLeft = "240px";
+            }
+        });
+    </script>
+
+</th:block>
+
+
+</body>
+</html>

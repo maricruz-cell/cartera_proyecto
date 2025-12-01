@@ -1,0 +1,241 @@
+/* =========================================
+   GENERAL
+========================================= */
+body {
+    margin: 0;
+    background: #F5F5F5;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+/* =========================================
+   CARD PRINCIPAL (más pequeño)
+   Clases: .login-card (HTML 1) y .container (HTML 2)
+========================================= */
+.login-card, .container {
+    width: 880px;      /* antes 960px */
+    height: 540px;     /* antes 600px */
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+}
+
+/* =========================================
+   LADO IZQUIERDO
+   Clases: .left-side (HTML 1) y .left-panel (HTML 2)
+========================================= */
+.left-side, .left-panel {
+    width: 50%;
+    background: url('LOGIN.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.left-text {
+    position: absolute;
+    bottom: 15px;        /* <<< BAJADO (antes 45px) */
+    width: 100%;
+    text-align: center;
+    color: white;
+    line-height: 1.1;
+}
+
+.left-text h2 {
+    font-size: 38px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.left-text h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 6px 0 0 0;
+    letter-spacing: 1px;
+}
+
+.left-text p, .left-text span { /* Agregado 'span' para HTML 2 */
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    display: block; /* Asegura que 'p' y 'span' funcionen como bloques */
+}
+
+
+
+/* =========================================
+   LADO DERECHO
+   Clases: .right-side (HTML 1) y .right-panel (HTML 2)
+========================================= */
+.right-side, .right-panel {
+    width: 50%;
+    padding: 25px 45px; /* menos padding */
+    text-align: center;
+}
+
+/* Logo: .edomex-logo (HTML 1) y .logo img (HTML 2) */
+.edomex-logo, .logo img {
+    width: 170px;      /* antes 150 */
+    margin-left: auto;
+    display: block;
+}
+
+/* Título: .titulo (HTML 1) y h2 dentro del panel (HTML 2) */
+.titulo, .right-side h2, .right-panel h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 25px;   /* NUEVO / MÁS ESPACIO */
+}
+
+
+/* =========================================
+   FORMULARIO
+========================================= */
+.label, .input-group label { /* Agregado selector para HTML 2 */
+    text-align: left;
+    display: block;
+    margin-top: 20px;      /* antes 12px – más espacio */
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+
+/* Contenedor de Input: .input-box (HTML 1) y .input-group (HTML 2) */
+/* NOTA: Para HTML 2, el estilo de border/padding aplica al contenedor .input-group,
+         pero el <input> no está anidado en otro div como en el HTML 1. */
+.input-box, .input-group {
+    display: flex; /* Mantenemos flex para alinear el input/icono */
+    align-items: center;
+    border-radius: 10px;     /* más pequeño */
+    border: 1px solid rgba(180, 137, 84, 0.35);
+    padding: 7px 10px;       /* antes 8px 12px */
+    background: white;
+}
+
+.input-box input, .input-group input { /* Aplica al <input> dentro de ambos */
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;         /* antes 15 */
+    padding-left: 8px;
+}
+
+.icon {
+    width: 20px;             /* antes 22 */
+    opacity: 0.7;
+}
+
+.icon.view {
+    cursor: pointer;
+}
+
+/* =========================================
+   LINKS SUPERIORES (Olvidé Contraseña)
+   Clases: .olvide (HTML 1) y .forgot (HTML 2)
+========================================= */
+.olvide, .forgot {
+    display: block;
+    text-align: left;
+    font-size: 11px;
+    margin-top: 8px;       /* antes 5px */
+    margin-bottom: 20px;   /* NUEVO – separa más del adorno dorado */
+    color: #7B1E3D;
+    text-decoration: none; /* Asegura que no tenga subrayado en HTML 2 */
+}
+
+
+/* =========================================
+   DECORACIÓN DORADA
+   (Solo aplica a HTML 1, ignorado por HTML 2)
+========================================= */
+.decor {
+    width: 105%;              /* antes 80% */
+    margin: 18px auto;       /* antes 20px */
+    display: block;
+}
+
+/* =========================================
+   BOTÓN DE INGRESAR
+   Clases: .btn-login (HTML 1) y .btn (HTML 2)
+========================================= */
+.btn-login, .btn {
+    width: 65%;              /* antes 70% */
+    height: 40px;            /* antes 45 */
+    border: none;
+    background: #7B1E3D;
+    color: white;
+    border-radius: 22px;     /* antes 25 */
+    font-size: 14px;         /* antes 15 */
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover, .btn:hover {
+    background: #63152d;
+}
+
+/* =========================================
+   LINKS INFERIORES (Crear Cuenta / Ayuda)
+   Selector de 'Crear Cuenta' en HTML 2: .right-panel > a
+========================================= */
+.extra-links a, .right-panel > a {
+    display: block;
+    font-size: 13px;         /* antes 14 */
+    margin-top: 3px;
+    text-decoration: none;
+}
+
+/* Color para el link de 'Crear Cuenta' */
+.crear, .right-panel > a {
+    color: #7B1E3D;
+}
+
+.ayuda {
+    color: #B48954; /* Solo aplica a HTML 1 */
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 900px) {
+
+    body {
+        padding: 10px;
+    }
+
+    /* Contenedor */
+    .login-card, .container {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    /* Lado Izquierdo */
+    .left-side, .left-panel {
+        height: 200px;
+    }
+
+    .left-text {
+        bottom: 15px;
+        left: 25px;
+    }
+
+    /* Lado Derecho */
+    .right-side, .right-panel {
+        padding: 25px 20px;
+    }
+
+    /* Botón */
+    .btn-login, .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecciona tu Perfil</title>
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <h1 class="titulo-app">EMPLEO GOB.EDOMEX<br><span>PODER EJECUTIVO</span></h1>
+        </div>
+
+        <div class="header-right">
+
+            <!-- Ícono corregido -->
+            <img src="/img/icono_gobierno.avif" alt="Gobierno" class="logo-gob">
+
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor">
+
+        <h2 class="titulo-principal">Bienvenido(a), Selecciona tu Perfil de Ingreso</h2>
+
+        <p class="descripcion">
+            Para continuar, selecciona el apartado que corresponda a tu rol.<br>
+            Ingresa a tu cuenta utilizando el botón “Iniciar Sesión”. Si aún no tienes una cuenta,
+            podrás crearla desde la misma pantalla de acceso.
+        </p>
+
+        <div class="perfiles">
+
+            <!-- ASPIRANTE -->
+            <div class="perfil">
+                <img src="/img/aspirante.png" class="perfil-img" alt="">
+                <h3 class="perfil-title">ASPIRANTE</h3>
+                <p class="perfil-sub">Buscador de empleo</p>
+
+                <a href="/login?perfil=aspirante" style="text-decoration:none;">
+                    <button class="btn" type="button">INICIAR SESIÓN</button>
+                </a>
+
+            </div>
+
+            <!-- COORDINACION -->
+            <div class="perfil">
+                <img src="/img/coordinacion.png" class="perfil-img" alt="">
+                <h3 class="perfil-title">COORDINACION</h3>
+                <p class="perfil-sub">Acceso a la gestión de áreas</p>
+
+                <a href="/login?perfil=coordinacion" style="text-decoration:none;">
+                    <button class="btn" type="button">INICIAR SESIÓN</button>
+                </a>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>
+            OFICIALIA MAYOR<br>
+            DIRECCION GENERAL DE PERSONAL<br>
+            DIRECCION DE CAPITAL HUMANO Y ESCALAFON<br>
+            SUBDIRECCION DE RECLUTAMIENTO Y SELECCION DE PERSONAL
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #e6e1e1;
+}
+
+/* ====== LAYOUT GENERAL ====== */
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ====== TOPBAR ====== */
+.topbar {
+    background: #7B1E3D;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.menu-toggle {
+    width: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 4px;
+    margin: 4px 0;
+    background: white;
+    border-radius: 4px;
+}
+
+/* ====== USER INFO ====== */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.user-name {
+    font-size: 16px;
+}
+
+/* ====== BODY (SIDEBAR + CONTENT) ====== */
+.body {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+    width: 250px;
+    background: #f2efef;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 18px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 14px;
+    text-decoration: none;
+    color: #4a4a4a;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.sidebar ul li a:hover {
+    background: #e0dcdc;
+}
+
+.sidebar ul li img {
+    width: 26px;
+}
+
+.logout-section {
+    padding: 20px;
+}
+
+.logout-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #7B1E3D;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: #5a142c;
+}
+
+/* ====== CONTENT ====== */
+.content {
+    flex: 1;
+    padding: 40px;
+    background: white;
+    border-left: 1px solid #ccc;
+}
+
+.content h2 {
+    font-size: 26px;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 16px;
+    color: #333;
+}

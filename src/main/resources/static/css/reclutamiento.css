@@ -1,0 +1,242 @@
+/* =====================================================
+                      VARIABLES
+===================================================== */
+:root {
+    --vino: #7B1E3D;
+    --gris-fondo: #E5E0E0;
+    --gris-sidebar: #D9D9D9;
+    --gris-hover: #C4C4C4;
+    --texto: #333;
+    --blanco: #fff;
+}
+
+/* =====================================================
+                      GLOBAL
+===================================================== */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: var(--gris-fondo);
+}
+
+/* =====================================================
+                      TOPBAR
+===================================================== */
+.topbar {
+    background: var(--vino);
+    color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.menu-toggle {
+    font-size: 28px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.titulo-top {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-top img {
+    height: 50px;
+}
+
+/* =====================================================
+                      SIDEBAR
+===================================================== */
+.sidebar {
+    width: 260px;
+    background: var(--gris-sidebar);
+    height: calc(100vh - 70px);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    padding-top: 15px;
+    overflow-y: auto;
+    transition: width .3s ease;
+    box-shadow: 3px 0 6px rgba(0,0,0,0.15);
+    z-index: 1500;
+}
+
+/* COLAPSADO */
+.sidebar.colapsada {
+    width: 80px;
+}
+
+/* iconos más centrados en modo pequeño */
+.sidebar.colapsada a span {
+    display: none;
+}
+
+.sidebar.colapsada .icon {
+    margin-left: 10px;
+}
+
+/* =====================================================
+                 LISTA DE OPCIONES
+===================================================== */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 16px 0;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: var(--texto);
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background .2s ease;
+}
+
+.nav-links a:hover {
+    background: var(--gris-hover);
+}
+
+.icon {
+    width: 38px;
+    height: 38px;
+}
+
+
+/* BOTÓN CERRAR SESIÓN */
+.btn-logout {
+    width: 80%;
+    margin: 25px auto;
+    display: block;
+    background: var(--vino);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    opacity: .85;
+}
+
+/* =====================================================
+                   CONTENIDO
+===================================================== */
+
+.contenido-principal {
+    margin-left: 260px;
+    margin-top: 100px;
+    padding: 30px;
+    transition: margin-left .3s ease;
+}
+
+/* Ajuste cuando sidebar está colapsado */
+.sidebar.colapsada ~ .contenido-principal {
+    margin-left: 100px;
+}
+
+.titulo-seccion {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* =====================================================
+                     TABLA
+===================================================== */
+
+.tabla-vacantes {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 15px;
+}
+
+.tabla-vacantes th {
+    background: #F3F3F3;
+    padding: 14px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+}
+
+.tabla-vacantes td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.tabla-vacantes tr:hover {
+    background: #fafafa;
+}
+
+/* =====================================================
+              BUSCADOR Y ESTATUS (Figma)
+===================================================== */
+
+.barra-estatus {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-estatus {
+    padding: 10px 25px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-estatus.gris { background: #D9D9D9; color: #444; }
+.btn-estatus.verde { background: #4CAF50; }
+.btn-estatus.azul  { background: #1976D2; }
+.btn-estatus.rojo  { background: #B71C1C; }
+
+.buscador {
+    width: 95%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.buscador input {
+    padding: 8px;
+    font-size: 15px;
+    width: 200px;
+    border: 1px solid #AAA;
+    border-radius: 6px;
+}
+

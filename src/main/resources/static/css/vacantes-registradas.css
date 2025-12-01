@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vacantes Registradas</title>
+    <link rel="stylesheet" href="/css/reclutamiento.css">
+</head>
+
+<body>
+
+<!-- MENÚ GLOBAL -->
+<div th:replace="reclutamiento/menu :: menu"></div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="contenido-principal">
+
+    <h1 class="titulo-seccion">VACANTES REGISTRADAS</h1>
+
+    <!-- BOTONES DE ESTATUS -->
+    <div class="barra-estatus">
+        <button class="btn-estatus gris">Nuevo registro</button>
+        <button class="btn-estatus verde">En proceso</button>
+        <button class="btn-estatus azul">Nuevo registro</button>
+        <button class="btn-estatus rojo">Nuevo registro</button>
+    </div>
+
+    <!-- BUSCADOR -->
+    <div class="buscador">
+        <label>Buscar:</label>
+        <input type="text">
+    </div>
+
+    <!-- TABLA -->
+    <table class="tabla-vacantes">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Folio</th>
+            <th>Fecha de Registro</th>
+            <th>Estatus</th>
+            <th>Secretaría</th>
+            <th>Puesto</th>
+            <th>Número de vacantes</th>
+            <th>Cambiar estatus</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="v, i : ${vacantes}">
+            <td th:text="${i.count}"></td>
+            <td th:text="${v.folio}"></td>
+            <td th:text="${v.fechaRegistro}"></td>
+            <td th:text="${v.estatus}"></td>
+            <td th:text="${v.secretaria}"></td>
+            <td th:text="${v.puesto}"></td>
+            <td th:text="${v.numVacantes}"></td>
+            <td>
+                <a href="#" class="link-cambiar">CAMBIAR ESTATUS</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- PAGINACIÓN -->
+    <div class="paginacion">
+        <button class="btn-pag">ANTERIOR</button>
+        <button class="btn-pag activo">1</button>
+        <button class="btn-pag">SIGUIENTE</button>
+    </div>
+
+</div>
+
+</body>
+</html>
