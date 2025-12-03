@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conocimientos Específicos</title>
+
+    <!-- MISMO CSS GENERAL DEL ASPIRANTE -->
+    <link rel="stylesheet" th:href="@{/css/aspirante-menu.css}">
+
+    <style>
+        body {
+            background: #F4F4F4;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+            margin-top: 20px;
+        }
+
+        h2.titulo {
+            text-align: center;
+            margin-top: 0;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .bloque {
+            margin-top: 25px;
+        }
+
+        .bloque-titulo {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: .5px;
+        }
+
+        .bloque-label {
+            font-size: 13px;
+            margin-top: 5px;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .opciones-si-no {
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .opciones-si-no label {
+            margin-right: 15px;
+        }
+
+        .fila-form {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .fila-form label {
+            min-width: 120px;
+        }
+
+        select, input[type="text"], textarea {
+            border: 1px solid #E2B6B6;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 13px;
+            width: 260px;
+            box-sizing: border-box;
+        }
+
+        select:disabled,
+        input[disabled],
+        textarea[disabled] {
+            background: #F7F0F0;
+            color: #999;
+        }
+
+        textarea {
+            width: 70%;
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .niveles-idioma {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 30px;
+            margin-top: 10px;
+        }
+
+        .niveles-idioma .fila-form {
+            margin-bottom: 0;
+        }
+
+        .botones {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-cancelar {
+            background: transparent;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .btn-guardar {
+            background: #7B1E3D;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            padding-bottom: 20px;
+        }
+
+        .oculto {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ▬▬▬ TOPBAR ▬▬▬ -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <span class="brand">EMPLEO</span>
+
+            <button id="toggleSidebar" class="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <div class="topbar-right">
+            <img class="avatar" th:src="@{${fotoAspirante}}">
+            <span class="user-name" th:text="${nombreAspirante}">Aspirante</span>
+        </div>
+    </header>
+
+    <div class="body">
+
+        <!-- ▬▬▬ SIDEBAR ▬▬▬ -->
+        <aside id="sidebar" class="sidebar">
+            <ul>
+                <li><a th:href="@{/aspirante/datos-personales}">
+                    <img src="/img/icon-datos.png"><span>Datos Personales</span></a></li>
+
+                <li><a th:href="@{/aspirante/escolaridad}">
+                    <img src="/img/icon-escolaridad.png"><span>Escolaridad</span></a></li>
+
+                <li><a th:href="@{/aspirante/experiencia-laboral}">
+                    <img src="/img/icon-experiencia.png"><span>Experiencia Laboral</span></a></li>
+
+                <li><a th:href="@{/aspirante/capacitacion}">
+                    <img src="/img/icon-capacitacion1.png"><span>Capacitación</span></a></li>
+
+                <li class="active"><a th:href="@{/aspirante/conocimientos}">
+                    <img src="/img/icon-conocimiento.png"><span>Conocimientos Específicos</span></a></li>
+
+                <li><a th:href="@{/aspirante/competencias}">
+                    <img src="/img/icon-competencias.png"><span>Competencias y Habilidades</span></a></li>
+
+                <li><a th:href="@{/aspirante/cargardocumentos}">
+                    <img src="/img/icon-competencias.png"><span>Cargar Documentos</span></a></li>
+
+                <li><a th:href="@{/aspirante/cambiar-contrasena}">
+                    <img src="/img/icon-password.png"><span>Cambiar Contraseña</span></a></li>
+
+                <li><a th:href="@{/aspirante/eliminar-cuenta}">
+                    <img src="/img/icon-eliminar.png"><span>Eliminar Usuario</span></a></li>
+            </ul>
+
+            <div class="logout-section">
+                <a th:href="@{/logout}" class="logout-btn">CERRAR SESIÓN</a>
+            </div>
+        </aside>
+
+        <!-- ▬▬▬ CONTENIDO ▬▬▬ -->
+        <main id="content" class="content">
+
+            <div class="content-box">
+
+                <h2 class="titulo">CONOCIMIENTOS ESPECÍFICOS</h2>
+
+                <form th:action="@{/aspirante/conocimientos/guardar}"
+                      th:object="${conocimientos}"
+                      method="post">
+
+                    <!-- ▬▬▬ IDIOMA ▬▬▬ -->
+                    <div class="bloque">
+                        <div class="bloque-titulo">IDIOMA</div>
+                        <div class="bloque-label">
+                            Domina otro idioma además del español:
+                        </div>
+
+                        <div class="opciones-si-no">
+                            <label>
+                                <input type="radio" name="tieneIdioma"
+                                       value="true"
+                                       th:checked="*{tieneIdioma} == true"> Sí
+                            </label>
+                            <label>
+                                <input type="radio" name="tieneIdioma"
+                                       value="false"
+                                       th:checked="*{tieneIdioma} == false"> No
+                            </label>
+                        </div>
+
+                        <div id="bloqueIdioma"
+                             th:classappend="*{tieneIdioma} ? '' : ' oculto'">
+
+                            <div class="fila-form">
+                                <label>Idioma:</label>
+                                <select th:field="*{idIdioma}">
+                                    <option value="">Seleccione...</option>
+                                    <option th:each="i : ${catalogoIdiomas}"
+                                            th:value="${i.idIdioma}"
+                                            th:text="${i.descIdioma}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="niveles-idioma">
+
+                                <div class="fila-form">
+                                    <label>Redacción:</label>
+                                    <select th:field="*{nivelRedaccion}">
+                                        <option value="">Seleccione...</option>
+                                        <option th:each="n : ${niveles}"
+                                                th:value="${n.id}"
+                                                th:text="${n.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="fila-form">
+                                    <label>Conversación:</label>
+                                    <select th:field="*{nivelConversacion}">
+                                        <option value="">Seleccione...</option>
+                                        <option th:each="n : ${niveles}"
+                                                th:value="${n.id}"
+                                                th:text="${n.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="fila-form">
+                                    <label>Lectura:</label>
+                                    <select th:field="*{nivelLectura}">
+                                        <option value="">Seleccione...</option>
+                                        <option th:each="n : ${niveles}"
+                                                th:value="${n.id}"
+                                                th:text="${n.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="fila-form">
+                                    <label>Comprensión:</label>
+                                    <select th:field="*{nivelComprension}">
+                                        <option value="">Seleccione...</option>
+                                        <option th:each="n : ${niveles}"
+                                                th:value="${n.id}"
+                                                th:text="${n.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="fila-form">
+                                    <label>Documentos:</label>
+                                    <select th:field="*{nivelDocumento}">
+                                        <option value="">Seleccione...</option>
+                                        <option th:each="n : ${niveles}"
+                                                th:value="${n.id}"
+                                                th:text="${n.nombre}"></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ▬▬▬ INFORMÁTICA ▬▬▬ -->
+                    <div class="bloque">
+                        <div class="bloque-titulo">INFORMÁTICA</div>
+                        <div class="bloque-label">
+                            Maneja alguna paquetería de cómputo:
+                        </div>
+
+                        <div class="opciones-si-no">
+                            <label>
+                                <input type="radio" name="tieneInformatica"
+                                       value="true"
+                                       th:checked="*{tieneInformatica} == true"> Sí
+                            </label>
+                            <label>
+                                <input type="radio" name="tieneInformatica"
+                                       value="false"
+                                       th:checked="*{tieneInformatica} == false"> No
+                            </label>
+                        </div>
+
+                        <div id="bloqueInformatica"
+                             th:classappend="*{tieneInformatica} ? '' : ' oculto'">
+
+                            <div class="fila-form">
+                                <label>Paquetería / programa:</label>
+                                <select th:field="*{idInformatica}">
+                                    <option value="">Seleccione...</option>
+                                    <option th:each="p : ${catalogoInformatica}"
+                                            th:value="${p.idInformatica}"
+                                            th:text="${p.descInformatica}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="fila-form">
+                                <label>Nivel:</label>
+                                <select th:field="*{nivelInformatica}">
+                                    <option value="">Seleccione...</option>
+                                    <option th:each="n : ${niveles}"
+                                            th:value="${n.id}"
+                                            th:text="${n.nombre}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ▬▬▬ JURÍDICO / LABORAL ▬▬▬ -->
+                    <div class="bloque">
+                        <div class="bloque-titulo">JURÍDICO/LABORAL</div>
+                        <div class="bloque-label">
+                            ¿Tiene algún conocimiento jurídico/laboral?
+                        </div>
+
+                        <textarea th:field="*{juridicoLaboral}"
+                                  placeholder="No"></textarea>
+                    </div>
+
+                    <!-- ▬▬▬ CONOCIMIENTOS ESPECÍFICOS ▬▬▬ -->
+                    <div class="bloque">
+                        <div class="bloque-titulo">CONOCIMIENTOS ESPECÍFICOS</div>
+                        <div class="bloque-label">
+                            ¿Tiene algún otro conocimiento específico? Escríbalo:
+                        </div>
+
+                        <textarea th:field="*{conocimientoOtro}"
+                                  placeholder="Escríbalo"></textarea>
+                    </div>
+
+                    <div class="botones">
+                        <button type="button" class="btn-cancelar"
+                                onclick="window.location.href='/aspirante/datos-personales'">
+                            CANCELAR
+                        </button>
+
+                        <button type="submit" class="btn-guardar">GUARDAR</button>
+                    </div>
+
+                    <div class="footer">
+                        SUBDIRECCIÓN DE RECLUTAMIENTO Y SELECCIÓN DEL PERSONAL
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<script th:src="@{/js/aspirante-menu.js}"></script>
+
+<script>
+    function toggleBloque(nameRadio, bloqueId) {
+        const radios = document.querySelectorAll('input[name="' + nameRadio + '"]');
+        const bloque = document.getElementById(bloqueId);
+
+        function actualizar() {
+            const valor = document.querySelector('input[name="' + nameRadio + '"]:checked');
+            if (!valor) return;
+            if (valor.value === 'true') {
+                bloque.classList.remove('oculto');
+            } else {
+                bloque.classList.add('oculto');
+            }
+        }
+
+        radios.forEach(r => r.addEventListener('change', actualizar));
+        actualizar();
+    }
+
+    toggleBloque('tieneIdioma', 'bloqueIdioma');
+    toggleBloque('tieneInformatica', 'bloqueInformatica');
+</script>
+
+</body>
+</html>
