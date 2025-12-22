@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Editar ' + ${tabla}">Formulario catálogo</title>
+    <link rel="stylesheet" th:href="@{/css/aspirante-menu.css}">
+</head>
+<body>
+
+<div class="layout">
+    <header class="topbar">
+        <h1 th:text="'Catálogo: ' + ${tabla}"></h1>
+        <a th:href="@{|/catalogos/${tabla}|}" style="color:white">← Volver</a>
+    </header>
+
+    <main style="padding: 1.5rem">
+        <form th:if="${registro[colId] != null}"
+              th:action="@{|/catalogos/${tabla}/actualizar/${registro[colId]}|}"
+              method="post">
+
+            <div th:each="col : ${columnas}" style="margin-bottom: 0.8rem;">
+                <label th:for="${col}" th:text="${col}"></label>
+
+                <!-- PK solo lectura -->
+                <input th:if="${col == colId}"
+                       type="text"
+                       th:id="${col}"
+                       th:name="${col}"
+                       th:value="${registro[col]}"
+                       readonly/>
+
+                <!-- Campos editables -->
+                <input th:if="${col != colId}"
+                       type="text"
+                       th:id="${col}"
+                       th:name="${col}"
+                       th:value="${registro[col]}"/>
+            </div>
+
+            <button type="submit">Guardar cambios</button>
+        </form>
+
+        <!-- Form NUEVO -->
+        <form th:if="${registro[colId] == null}"
+              th:action="@{|/catalogos/${tabla}/guardar|}"
+              method="post">
+
+            <div th:each="col : ${columnas}" style="margin-bottom: 0.8rem;">
+                <label th:for="${col}" th:text="${col}"></label>
+
+                <!-- PK no se captura (la genera la BD) -->
+                <input th:if="${col != colId}"
+                       type="text"
+                       th:id="${col}"
+                       th:name="${col}"/>
+
+                <input th:if="${col == colId}"
+                       type="text"
+                       th:id="${col}"
+                       th:name="${col}"
+                       value=""
+                       readonly
+                       placeholder="(auto)"/>
+            </div>
+
+            <button type="submit">Guardar</button>
+        </form>
+    </main>
+</div>
+
+</body>
+</html>

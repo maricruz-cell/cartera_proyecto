@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogos</title>
+    <link rel="stylesheet" th:href="@{/css/aspirante-menu.css}">
+</head>
+<body>
+
+<div class="layout">
+    <header class="topbar">
+        <h1>Catálogos del sistema</h1>
+    </header>
+
+    <main style="padding: 1.5rem">
+        <table class="tabla" style="width: 50%; background:white">
+            <thead>
+            <tr>
+                <th>Catálogo</th>
+                <th style="width: 120px;">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cat : ${catalogos}">
+                <td th:text="${cat}">cat_xxx</td>
+                <td>
+                    <a th:href="@{|/catalogos/${cat}|}" class="btn">Abrir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+</body>
+</html>
