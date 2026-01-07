@@ -63,7 +63,7 @@ public class DtExperienciaLaboral {
     private Integer idTipoContratacion;    // cat_tipo_contratacion
 
     @Column(name = "id_motivo_separacion")
-    private Integer idMotivoSeparacion;    // (si existe FK)
+    private Integer idMotivoSeparacion;
 
     @Column(name = "motivo_separacion")
     private String motivoSeparacion;
