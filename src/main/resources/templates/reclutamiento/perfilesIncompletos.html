@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recordatorio - Perfiles Incompletos</title>
+    <link rel="stylesheet" th:href="@{/css/reclutamiento.css}">
+</head>
+<body>
+<div th:insert="reclutamiento/menu :: menu"></div>
+
+<main class="content">
+    <h2>Recordatorio - Perfiles Incompletos</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Fecha Creación</th>
+            <th>Correo</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Estatus</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="perfil : ${perfiles}">
+            <td th:text="${#dates.format(perfil.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${perfil.correo}"></td>
+            <td th:text="${perfil.nombre}"></td>
+            <td th:text="${perfil.apellidoPaterno}"></td>
+            <td th:text="${perfil.apellidoMaterno}"></td>
+            <td th:text="${perfil.estatusPerfil}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

@@ -7,7 +7,7 @@
 
 <body>
 
-<!-- 🔥 FRAGMENTO DEL MENÚ -->
+<!--  FRAGMENTO DEL MENÚ -->
 <th:block th:fragment="menu">
 
     <!-- ===== BARRA SUPERIOR ===== -->
@@ -28,14 +28,14 @@
         <ul class="nav-links">
 
             <li>
-                <a th:href="@{/reclutamiento/vacantes-registradas}">
+                <a th:href="@{/reclutamiento/vacantes_registradas}">
                     <img src="/img/icon-datos.png" class="icon">
                     <span>Vacantes registradas</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/reclutamiento/vacantes-cubiertas}">
+                <a th:href="@{/reclutamiento/vacantes_cubiertas}">
                     <img src="/img/icon-escolaridad.png" class="icon">
                     <span>Vacantes cubiertas</span>
                 </a>
@@ -56,22 +56,24 @@
             </li>
 
             <li>
-                <a th:href="@{/reclutamiento/estadisticos}">
+                <a th:href="@{/reclutamiento/estadisticas}">
                     <img src="/img/icon-lock.png" class="icon">
                     <span>Estadísticos</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/reclutamiento/catalogos}">
-                    <img src="/img/icon-password.png" class="icon">
+                <a th:href="@{/catalogos}">
+
+                <img src="/img/icon-password.png" class="icon">
                     <span>Catálogos</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/reclutamiento/coordinadores}">
-                    <img src="/img/icon-user.png" class="icon">
+                <a th:href="@{/coordinaciones}">
+
+                <img src="/img/icon-user.png" class="icon">
                     <span>Coordinadores</span>
                 </a>
             </li>
@@ -108,22 +110,14 @@
     <!-- SCRIPT DEL MENÚ PARA AJUSTAR EL CONTENIDO -->
     <script>
         const sidebar = document.getElementById("sidebar");
-        const contenido = document.querySelector(".contenido");
 
         document.getElementById("btnMenu").addEventListener("click", () => {
             sidebar.classList.toggle("colapsada");
             sidebar.classList.toggle("expandida");
-
-            if (sidebar.classList.contains("colapsada")) {
-                contenido.style.marginLeft = "80px";
-            } else {
-                contenido.style.marginLeft = "240px";
-            }
         });
     </script>
 
 </th:block>
-
 
 </body>
 </html>

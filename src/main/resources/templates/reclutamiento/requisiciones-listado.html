@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Requisiciones - Unidad</title>
+    <link rel="stylesheet" th:href="@{/css/unidad-requisiciones.css}">
+</head>
+<body>
+
+<div class="page">
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-title">CARTERA DE EMPLEO</span>
+            <span class="brand-sub">UNIDAD · Requisiciones</span>
+        </div>
+        <div class="top-actions">
+            <a class="btn-outline" th:href="@{/unidad/menu}">Regresar</a>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="card">
+            <div class="card-head">
+                <h2>Requisiciones registradas</h2>
+                <p>Consulta los expedientes de requisición por folio y dependencia.</p>
+            </div>
+
+            <div class="table-wrap">
+                <table class="tabla">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Folio</th>
+                        <th>Dependencia</th>
+                        <th>Secretaría</th>
+                        <th>Fecha</th>
+                        <th>Estatus</th>
+                        <th>Acción</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- LISTADO -->
+                    <tr th:each="r : ${lista}">
+                        <td th:text="${r.idRequisicion}"></td>
+                        <td th:text="${r.folio}"></td>
+                        <td th:text="${r.nombredep}"></td>
+                        <td th:text="${r.nomsecretaria}"></td>
+                        <td th:text="${r.fechaRegistro}"></td>
+                        <td>
+                            <span class="badge"
+                                  th:text="${r.estatus}">
+                            </span>
+                        </td>
+                        <td>
+                            <a class="btn"
+                               th:href="@{/unidad/requisicion-detalle(id=${r.idRequisicion})}">
+                                Ver expediente
+                            </a>
+
+                        </td>
+                    </tr>
+
+                    <!-- SIN REGISTROS -->
+                    <tr th:if="${#lists.isEmpty(lista)}">
+                        <td colspan="7" class="empty">
+                            No hay requisiciones registradas.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expediente de Requisición</title>
+    <link rel="stylesheet" th:href="@{/css/unidad-requisiciones.css}">
+</head>
+<body>
+
+<div class="page">
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-title">CARTERA DE EMPLEO</span>
+            <span class="brand-sub">UNIDAD · Expediente</span>
+        </div>
+        <div class="top-actions">
+            <a class="btn-outline" th:href="@{/unidad/requisicion-listado}">Volver al listado</a>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <!-- ================= HERO ================= -->
+        <div class="hero">
+            <div>
+                <h1>Expediente de Requisición</h1>
+                <p>
+                    Folio:
+                    <b th:text="${requisicion.folio}"></b>
+                    · Dependencia:
+                    <b th:text="${requisicion.nombredep}"></b>
+                </p>
+            </div>
+            <div class="hero-right">
+                <span class="badge big">ID:
+                    <span th:text="${requisicion.idRequisicion}"></span>
+                </span>
+                <span class="badge big">Estatus:
+                    <span th:text="${requisicion.estatus}"></span>
+                </span>
+            </div>
+        </div>
+
+        <!-- ================= DEPENDENCIA ================= -->
+        <section class="grid-2">
+            <div class="card">
+                <div class="card-head">
+                    <h2>Dependencia</h2>
+                    <p>Información general del registro.</p>
+                </div>
+                <div class="kv">
+                    <div><span>Clave dependencia</span><b th:text="${requisicion.cveDependencia}"></b></div>
+                    <div><span>Secretaría</span><b th:text="${requisicion.nomsecretaria}"></b></div>
+                    <div><span>Dependencia</span><b th:text="${requisicion.nombredep}"></b></div>
+                    <div><span>Fecha registro</span><b th:text="${requisicion.fechaRegistro}"></b></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h2>Datos del solicitante</h2>
+                    <p>Responsable de la entrevista.</p>
+                </div>
+                <div class="kv">
+                    <div><span>Unidad solicitante</span><b th:text="${requisicion.unidadsolicitante}"></b></div>
+                    <div><span>Solicitante</span><b th:text="${requisicion.solicitante}"></b></div>
+                    <div><span>Día entrevista</span><b th:text="${requisicion.diaentrevista}"></b></div>
+                    <div><span>Hora entrevista</span><b th:text="${requisicion.horaentrevista}"></b></div>
+                    <div><span>Presentarse con</span><b th:text="${requisicion.presentarsecon}"></b></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= DIRECCIÓN ENTREVISTA ================= -->
+        <section class="card">
+            <div class="card-head">
+                <h2>Dirección de la entrevista</h2>
+            </div>
+
+            <div class="grid-3">
+                <div class="kv mini">
+                    <div><span>Estado (ID)</span><b th:text="${requisicion.idEstadoSol}"></b></div>
+                    <div><span>Municipio (ID)</span><b th:text="${requisicion.idMunicipioSol}"></b></div>
+                    <div><span>Localidad (ID)</span><b th:text="${requisicion.idLocalidadSol}"></b></div>
+                </div>
+
+                <div class="kv mini">
+                    <div><span>Colonia</span><b th:text="${requisicion.coloniaSol}"></b></div>
+                    <div><span>Calle</span><b th:text="${requisicion.calleSol}"></b></div>
+                    <div><span>Exterior</span><b th:text="${requisicion.exteSol}"></b></div>
+                    <div><span>Interior</span><b th:text="${requisicion.inteSol}"></b></div>
+                    <div><span>C.P.</span><b th:text="${requisicion.codigoPostalSol}"></b></div>
+                </div>
+
+                <div class="kv mini">
+                    <div><span>Correo</span><b th:text="${requisicion.correoSol}"></b></div>
+                    <div><span>Teléfono</span><b th:text="${requisicion.telSol}"></b></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VACANTE ================= -->
+        <section class="card">
+            <div class="card-head">
+                <h2>Vacante</h2>
+            </div>
+
+            <div class="grid-3">
+                <div class="kv mini">
+                    <div><span>Puesto</span><b th:text="${requisicion.desPuesto}"></b></div>
+                    <div><span>Tipo de plaza</span><b th:text="${requisicion.tipoPlaza}"></b></div>
+                    <div><span>Tipo de contrato</span><b th:text="${requisicion.tipoContrato}"></b></div>
+                </div>
+
+                <div class="kv mini">
+                    <div><span>Número de vacantes</span><b th:text="${requisicion.numerovacantes}"></b></div>
+                    <div><span>Sueldo</span><b th:text="${requisicion.sueldoVac}"></b></div>
+                    <div><span>Viaje</span><b th:text="${requisicion.viaje}"></b></div>
+                </div>
+
+                <div class="kv mini">
+                    <div><span>Días a laborar</span><b th:text="${requisicion.diasLaborar}"></b></div>
+                    <div><span>Hora entrada</span><b th:text="${requisicion.horaEntrada}"></b></div>
+                    <div><span>Hora salida</span><b th:text="${requisicion.horaSalida}"></b></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FUNCIONES ================= -->
+        <section class="card">
+            <div class="card-head">
+                <h2>Funciones y actividades</h2>
+            </div>
+
+            <div class="chips">
+                <span class="chip"
+                      th:each="f : ${requisicion.funciones}"
+                      th:text="${f}"></span>
+
+                <div class="empty"
+                     th:if="${#lists.isEmpty(requisicion.funciones)}">
+                    No hay funciones registradas.
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PERFIL CANDIDATO ================= -->
+        <section class="card">
+            <div class="card-head">
+                <h2>Perfil del candidato</h2>
+            </div>
+
+            <div class="grid-3">
+
+                <div>
+                    <h3 class="subtitulo">Escolaridad requerida</h3>
+                    <div class="chips">
+                        <span class="chip"
+                              th:each="e : ${requisicion.escolaridad}"
+                              th:text="${e}"></span>
+                        <div class="empty" th:if="${#lists.isEmpty(requisicion.escolaridad)}">
+                            Sin registros
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="subtitulo">Idiomas</h3>
+                    <div class="chips">
+                        <span class="chip"
+                              th:each="i : ${requisicion.idiomas}"
+                              th:text="${i}"></span>
+                        <div class="empty" th:if="${#lists.isEmpty(requisicion.idiomas)}">
+                            Sin registros
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="subtitulo">Informática</h3>
+                    <div class="chips">
+                        <span class="chip"
+                              th:each="inf : ${requisicion.informaticaList}"
+                              th:text="${inf}"></span>
+                        <div class="empty" th:if="${#lists.isEmpty(requisicion.informaticaList)}">
+                            Sin registros
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:14px;">
+                <h3 class="subtitulo">Competencias</h3>
+                <div class="chips">
+                    <span class="chip"
+                          th:each="c : ${requisicion.competencias}"
+                          th:text="${c}"></span>
+                    <div class="empty" th:if="${#lists.isEmpty(requisicion.competencias)}">
+                        Sin registros
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
