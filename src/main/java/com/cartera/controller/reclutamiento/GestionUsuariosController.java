@@ -1,4 +1,4 @@
 package com.cartera.controller.reclutamiento;
 
-public class AspirantesRegistradosController {
+public class GestionUsuariosController {
 }
